@@ -55,6 +55,17 @@ export default class Login extends Component {
           >
             Login
           </Button>
+          <br></br>
+          <Button
+            block
+            bsSize="large"
+            type="submit"
+            
+          >
+            Sign Up
+          </Button>
+  
+
         </form>
       </div>
     );
