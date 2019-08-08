@@ -11,7 +11,8 @@ import {
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
-  MDBDropdownItem
+  MDBDropdownItem,
+  MDBBtn
 } from "mdbreact";
 
 class NavbarPage extends Component {
@@ -25,9 +26,9 @@ class NavbarPage extends Component {
 
   render() {
     return (
-      <MDBNavbar color="indigo" dark expand="md">
+      <MDBNavbar color="" dark expand="md">
         <MDBNavbarBrand>
-          <strong className="white-text">Navbar</strong>
+          <strong className="black-text">Navbar</strong>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -72,6 +73,8 @@ class NavbarPage extends Component {
                 </div>
               </MDBFormInline>
             </MDBNavItem>
+            <MDBBtn>Log In</MDBBtn>
+            <MDBBtn>Sign Up</MDBBtn>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
