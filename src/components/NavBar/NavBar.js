@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 import './NavBar.css';
+// import { BrowserRouter as Route} from "react-router-dom";
 import {
   MDBNavbar,
   MDBNavbarBrand,
   MDBNavbarNav,
-  MDBNavItem,
-  MDBNavLink,
   MDBNavbarToggler,
   MDBCollapse,
-  MDBFormInline,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
   MDBBtn
 } from 'mdbreact';
 
-class NavbarPage extends Component {
+class NavbarPageTwo extends Component {
   state = {
     isOpen: false
   };
@@ -29,10 +23,11 @@ class NavbarPage extends Component {
     return (
       <MDBNavbar color="black" dark expand="md">
         <MDBNavbarBrand>
-          <strong className="white-text">Navbar</strong>
+          <strong className="white-text" to="#!">Navbar</strong>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+
           <MDBNavbarNav left>
             <MDBNavItem active>
               <MDBNavLink to="/">Home</MDBNavLink>
@@ -74,8 +69,7 @@ class NavbarPage extends Component {
                 </div>
               </MDBFormInline>
             </MDBNavItem>
-            <MDBBtn href="/login">Log In</MDBBtn>
-            <MDBBtn href="/signup">Sign Up</MDBBtn>
+            
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
@@ -83,4 +77,4 @@ class NavbarPage extends Component {
   }
 }
 
-export default NavbarPage;
+export default NavbarPageTwo;

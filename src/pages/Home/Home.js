@@ -1,21 +1,27 @@
 import React from "react";
-import { Col, Row, Container } from "../../components/Grid/Grid";
-import Jumbotron from "../../components/Jumbotron/index"
-
+import { Row, Container } from "../../components/Grid/Grid";
+import Jumbotron from "../../components/Jumbotron/index";
+import { MDBBtn } from "mdbreact";
+import NavBar from "../../components/NavBar/NavBar"
 
 function Home() {
   return (
+    <>
+    <NavBar />
     <Container fluid>
+      
       <Row>
-        <Col size="md-12">
-          <Jumbotron>
-            <h1 className="text-black">The Online Resume Builder</h1>
-            <p>Creating a Professional Resume and Cover Letter Has Never Been So Easy</p>
-            
-          </Jumbotron>
-        </Col>
+        <Jumbotron>
+          <h1 className="text-white">The Online Resume Builder</h1>
+          <p className="text-white">
+            Creating a Professional Resume and Cover Letter Has Never Been So
+            Easy
+          </p>
+          <MDBBtn gradient="aqua">Start</MDBBtn>
+        </Jumbotron>
       </Row>
     </Container>
+    </>
   );
 }
 
