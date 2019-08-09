@@ -1,23 +1,19 @@
-import React, { Component } from "react";
-import {  
-  FormGroup,
-  FormControl,
-  Button,
-  FormLabel
-} from "react-bootstrap";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { FormGroup, FormControl, Button, FormLabel } from 'react-bootstrap';
 // import LoaderButton from "../components/LoaderButton";
-import "./SignUp.css";
+import './SignUp.css';
 
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: "",
-      password: "",
-      firstname: "",
-      lastname: "",
-      confirmPassword: "",
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
       // newUser: null
     };
   }
@@ -27,8 +23,8 @@ export default class SignUp extends Component {
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
       this.state.password === this.state.confirmPassword &&
-      this.state.firstname &&
-      this.state.lastname
+      this.state.firstname > 0 &&
+      this.state.lastname > 0
     );
   }
 
@@ -36,18 +32,41 @@ export default class SignUp extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
-  }
+  };
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault();
-    this.setState({ newUser: "test" });
-  }
 
-  render () {
+    axios
+      .post('https://server-project3.herokuapp.com/api/add/account', {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
+        confirmPassword: this.state.confirmPassword
+      })
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    this.setState({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+      // newUser: ''
+    });
+  };
+
+  render() {
     return (
       <div className="SignUp">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
+          <FormGroup controlId="email" bssize="large">
             <FormLabel>Email</FormLabel>
             <FormControl
               autoFocus
@@ -56,7 +75,7 @@ export default class SignUp extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password" bssize="large">
             <FormLabel>Password</FormLabel>
             <FormControl
               value={this.state.password}
@@ -64,7 +83,7 @@ export default class SignUp extends Component {
               type="password"
             />
           </FormGroup>
-          <FormGroup controlId="confirm-password" bsSize="large">
+          <FormGroup controlId="confirmPassword" bssize="large">
             <FormLabel>Confirm Password</FormLabel>
             <FormControl
               value={this.state.confirmPassword}
@@ -72,31 +91,32 @@ export default class SignUp extends Component {
               type="password"
             />
           </FormGroup>
-          <FormGroup controlId="firstName" bsSize="large">
+          <FormGroup controlId="firstName" bssize="large">
             <FormLabel>First Name</FormLabel>
             <FormControl
               value={this.state.firstname}
               onChange={this.handleChange}
-              type="password"
+              type="text"
             />
           </FormGroup>
-          <FormGroup controlId="lastName" bsSize="large">
+          <FormGroup controlId="lastName" bssize="large">
             <FormLabel>Last Name</FormLabel>
             <FormControl
               value={this.state.lastname}
               onChange={this.handleChange}
-              type="password"
+              type="text"
             />
           </FormGroup>
           <Button
             block
-            bsSize="large"
-            disabled={!this.validateForm()}
+            bssize="large"
+            disabled={!this.validateForm}
             type="submit"
+            onClick={this.handleSubmit}
           >
             Submit
           </Button>
-         </form>
+        </form>
       </div>
     );
   }
