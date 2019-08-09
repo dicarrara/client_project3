@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import './NavBar.css';
 import {
   MDBNavbar,
@@ -14,7 +14,7 @@ import {
   MDBDropdownMenu,
   MDBDropdownItem,
   MDBBtn
-} from "mdbreact";
+} from 'mdbreact';
 
 class NavbarPage extends Component {
   state = {
@@ -35,13 +35,13 @@ class NavbarPage extends Component {
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
             <MDBNavItem active>
-              <MDBNavLink to="#!">Home</MDBNavLink>
+              <MDBNavLink to="/">Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!">Features</MDBNavLink>
+              <MDBNavLink to="/signup">Features</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!">Pricing</MDBNavLink>
+              <MDBNavLink to="/login">Pricing</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBDropdown>
@@ -74,8 +74,8 @@ class NavbarPage extends Component {
                 </div>
               </MDBFormInline>
             </MDBNavItem>
-            <MDBBtn>Log In</MDBBtn>
-            <MDBBtn>Sign Up</MDBBtn>
+            <MDBBtn href="/login">Log In</MDBBtn>
+            <MDBBtn href="/signup">Sign Up</MDBBtn>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
