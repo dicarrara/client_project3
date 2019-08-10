@@ -2,12 +2,20 @@ import React, { Component } from 'react';
 import './NavBar.css';
 // import { BrowserRouter as Route} from "react-router-dom";
 import {
+  MDBFormInline,
   MDBNavbar,
   MDBNavbarBrand,
   MDBNavbarNav,
+  MDBNavItem,
+  MDBNavLink,
   MDBNavbarToggler,
   MDBCollapse,
-  MDBBtn
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem,
+  MDBIcon
+  // MDBBtn
 } from 'mdbreact';
 
 class NavbarPageTwo extends Component {
@@ -22,54 +30,39 @@ class NavbarPageTwo extends Component {
   render() {
     return (
       <MDBNavbar color="black" dark expand="md">
-        <MDBNavbarBrand>
-          <strong className="white-text" to="#!">Navbar</strong>
+        <MDBNavbarBrand href="/login">
+          <img src="/eye.jpg" style={{ height: '4vw', width: '4vw' }} />
+          <strong className="white-text" to="/">
+            e-gle
+          </strong>
         </MDBNavbarBrand>
+
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-
           <MDBNavbarNav left>
-            <MDBNavItem active>
-              <MDBNavLink to="/">Home</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/signup">Features</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/login">Pricing</MDBNavLink>
-            </MDBNavItem>
+            <MDBNavItem />
+          </MDBNavbarNav>
+
+          <MDBNavbarNav right>
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
-                  <span className="mr-2">Dropdown</span>
+                  <span className="mr-2">Menu</span>
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">
-                    Something else here
-                  </MDBDropdownItem>
-                  <MDBDropdownItem href="#!">
-                    Something else here
+                  <MDBDropdownItem href="/account">Account</MDBDropdownItem>
+                  <MDBDropdownItem divider />
+                  <MDBDropdownItem href="/">Job Search</MDBDropdownItem>
+                  <MDBDropdownItem href="/resume">Resume</MDBDropdownItem>
+                  <MDBDropdownItem href="/learn">
+                    Learning Center
                   </MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavItem>
-          </MDBNavbarNav>
-          <MDBNavbarNav right>
             <MDBNavItem>
-              <MDBFormInline waves>
-                <div className="md-form my-0">
-                  <input
-                    className="form-control mr-sm-2"
-                    type="text"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                </div>
-              </MDBFormInline>
+              <MDBNavLink to="/login">HOHEOIFAHLIF</MDBNavLink>
             </MDBNavItem>
-            
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
