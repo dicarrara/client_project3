@@ -1,26 +1,31 @@
 import React from "react";
-import { Row, Container } from "../../components/Grid/Grid";
-import Jumbotron from "../../components/Jumbotron/index";
-import { MDBBtn } from "mdbreact";
-import NavBar from "../../components/NavBar/NavBar"
+import NavBar from "../../components/NavBar/NavBar";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import './Home.css';
 
 function Home() {
   return (
     <>
     <NavBar />
-    <Container fluid>
+    <MDBContainer>
       
-      <Row>
-        <Jumbotron>
-          <h1 className="text-white">The Online Resume Builder</h1>
-          <p className="text-white">
+      <MDBRow>
+        <MDBCol size="6">
+          <h1 className="text-black">The Online Resume Builder</h1>
+          <p className="text-black">
             Creating a Professional Resume and Cover Letter Has Never Been So
             Easy
           </p>
           <MDBBtn gradient="aqua">Start</MDBBtn>
-        </Jumbotron>
-      </Row>
-    </Container>
+        </MDBCol>
+      </MDBRow>
+      <MDBCol size="6">
+        <img src="/templ.jpg" className="img-fluid" alt="" />
+      </MDBCol>
+      <MDBRow>
+
+      </MDBRow>
+    </MDBContainer>
     </>
   );
 }
