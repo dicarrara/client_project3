@@ -1,18 +1,17 @@
 import React from "react";
-import { Row, Container } from "../../components/Grid/Grid";
-import Jumbotron from "../../components/Jumbotron/index";
-import { MDBCol, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import NavBarLoged from "../../components/NavBarLoged/NavBarLoged";
 
 function AccountPage() {
   return (
     <>
       <NavBarLoged />
-      <Container fluid>
-        <Row>
-          <Jumbotron>
+      <MDBContainer>
+        <MDBRow>
+          
             <h1 className="text-white">Search for a job</h1>
-            <Row>
+          </MDBRow>
+          <MDBRow>
             <MDBCol md="6">
               <div className="active-pink-3 active-pink-4 mb-4">
                 <input
@@ -23,6 +22,7 @@ function AccountPage() {
                 />
               </div>
             </MDBCol>
+            
             <MDBCol md="6">
               <div className="active-pink-3 active-pink-4 mb-4">
                 <input
@@ -33,6 +33,7 @@ function AccountPage() {
                 />
               </div>
             </MDBCol>
+            </MDBRow>
 
             <MDBBtn
               gradient="aqua"
@@ -43,12 +44,11 @@ function AccountPage() {
             >
               Search
             </MDBBtn>
-            </Row>
-          </Jumbotron>
+               
           
-        </Row>
-      </Container>
-    </>
+       
+      </MDBContainer>
+   </>
   );
 }
 
