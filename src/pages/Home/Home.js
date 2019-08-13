@@ -1,26 +1,28 @@
 import React from "react";
-import { Row, Container } from "../../components/Grid/Grid";
-import Jumbotron from "../../components/Jumbotron/index";
-import { MDBBtn } from "mdbreact";
-import NavBar from "../../components/NavBar/NavBar"
+import NavBar from "../../components/NavBar/NavBar";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import "./Home.css";
+import Footer from "../../components/Footer/Footer";
+// import CarouselResume from "../../components/Carousel/Carousel";
+// import ResumePics from "../../components/ResumePicture/ResumePics"
 
 function Home() {
   return (
     <>
-    <NavBar />
-    <Container fluid>
-      
-      <Row>
-        <Jumbotron>
-          <h1 className="text-white">The Online Resume Builder</h1>
-          <p className="text-white">
-            Creating a Professional Resume and Cover Letter Has Never Been So
-            Easy
-          </p>
-          <MDBBtn gradient="aqua">Start</MDBBtn>
-        </Jumbotron>
-      </Row>
-    </Container>
+      <NavBar />
+      <MDBContainer>
+        <MDBRow>
+          <MDBCol size="6">
+            <h1 className="text-black">The Online Resume Builder</h1>
+            <p className="text-black">
+              Creating a Professional Resume and Cover Letter Has Never Been So
+              Easy
+            </p>
+            <MDBBtn gradient="aqua">Start</MDBBtn>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+      <Footer />
     </>
   );
 }

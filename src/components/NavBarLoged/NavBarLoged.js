@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./NavBarLoged.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import {
   MDBNavbar,
@@ -29,7 +28,7 @@ class NavbarPage extends Component {
   render() {
     return (
       <Router>
-        <MDBNavbar color="black" dark expand="md">
+        <MDBNavbar color="black">
           <MDBNavbarBrand>
             <strong className="white-text">Navbar</strong>
           </MDBNavbarBrand>

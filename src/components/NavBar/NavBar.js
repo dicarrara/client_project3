@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './NavBar.css';
 // import { BrowserRouter as Route} from "react-router-dom";
 import {
-  MDBFormInline,
   MDBNavbar,
   MDBNavbarBrand,
   MDBNavbarNav,
@@ -14,7 +13,7 @@ import {
   MDBDropdownToggle,
   MDBDropdownMenu,
   MDBDropdownItem,
-  MDBIcon
+ 
   // MDBBtn
 } from 'mdbreact';
 
@@ -31,7 +30,7 @@ class NavbarPageTwo extends Component {
     return (
       <MDBNavbar color="black" dark expand="md">
         <MDBNavbarBrand href="/login">
-          <img src="/eye.jpg" style={{ height: '4vw', width: '4vw' }} />
+          <img src="/eye.jpg" style={{ height: '4vw', width: '4vw' }} alt="eye"/>
           <strong className="white-text" to="/">
             e-gle
           </strong>
