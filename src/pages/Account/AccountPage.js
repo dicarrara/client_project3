@@ -3,7 +3,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import NavBarLoged from "../../components/NavBarLoged/NavBarLoged";
 import "./Account.css";
 import CardForJob from "../../components/CardForJob/CardForJob";
-import Footer from "../../components/Footer/Footer";
+
 
 function AccountPage() {
   return (
@@ -53,7 +53,7 @@ function AccountPage() {
         <CardForJob />
         </MDBRow>
       </MDBContainer>
-      <Footer />
+      
     </>
   );
 }

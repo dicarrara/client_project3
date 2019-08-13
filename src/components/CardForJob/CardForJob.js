@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBBtn, MDBCard, MDBCardBody,MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import { MDBBtn, MDBIcon, MDBCard, MDBCardBody,MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 
 const CardForJob = () => {
   return (
@@ -11,10 +11,8 @@ const CardForJob = () => {
           <MDBCardText>
             You matched with this words:
           </MDBCardText>
-          <MDBBtn 
-          gradient="aqua"
-          href="#">
-            
+          <MDBBtn gradient="aqua" href="#">
+            <MDBIcon icon="star" />
           </MDBBtn>
         </MDBCardBody>
       </MDBCard>
