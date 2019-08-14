@@ -30,9 +30,9 @@ class NavbarPageTwo extends Component {
     return (
       <MDBNavbar color="black" dark expand="md">
         <MDBNavbarBrand href="/login">
-          <img src="/eye.jpg" style={{ height: '4vw', width: '4vw' }} alt="eye"/>
+          <img src="/ninja.png" style={{ height: '4vw', width: '4vw' }} alt="eye"/>
           <strong className="white-text" to="/">
-            e-gle
+            resume-ninja
           </strong>
         </MDBNavbarBrand>
 
