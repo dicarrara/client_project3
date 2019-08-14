@@ -14,7 +14,6 @@ export default class SignUp extends Component {
       email: '',
       password: '',
       confirmPassword: ''
-      // newUser: null
     };
   }
 
@@ -42,13 +41,13 @@ export default class SignUp extends Component {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
-        password: this.state.password,
-        confirmPassword: this.state.confirmPassword
+        password: this.state.password
       })
-      .then(function(response) {
+      .then(response => {
         console.log(response);
+        window.location.href('/');
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log(error);
       });
 
@@ -58,7 +57,6 @@ export default class SignUp extends Component {
       email: '',
       password: '',
       confirmPassword: ''
-      // newUser: ''
     });
   };
 
@@ -67,6 +65,22 @@ export default class SignUp extends Component {
       <div className="SignUp">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bssize="large">
+            <FormGroup controlId="firstName" bssize="large">
+              <FormLabel>First Name</FormLabel>
+              <FormControl
+                value={this.state.firstname}
+                onChange={this.handleChange}
+                type="text"
+              />
+            </FormGroup>
+            <FormGroup controlId="lastName" bssize="large">
+              <FormLabel>Last Name</FormLabel>
+              <FormControl
+                value={this.state.lastname}
+                onChange={this.handleChange}
+                type="text"
+              />
+            </FormGroup>
             <FormLabel>Email</FormLabel>
             <FormControl
               autoFocus
@@ -89,22 +103,6 @@ export default class SignUp extends Component {
               value={this.state.confirmPassword}
               onChange={this.handleChange}
               type="password"
-            />
-          </FormGroup>
-          <FormGroup controlId="firstName" bssize="large">
-            <FormLabel>First Name</FormLabel>
-            <FormControl
-              value={this.state.firstname}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </FormGroup>
-          <FormGroup controlId="lastName" bssize="large">
-            <FormLabel>Last Name</FormLabel>
-            <FormControl
-              value={this.state.lastname}
-              onChange={this.handleChange}
-              type="text"
             />
           </FormGroup>
           <Button

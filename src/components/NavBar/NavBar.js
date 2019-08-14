@@ -12,8 +12,8 @@ import {
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
-  MDBDropdownItem,
- 
+  MDBDropdownItem
+
   // MDBBtn
 } from 'mdbreact';
 
@@ -30,7 +30,11 @@ class NavbarPageTwo extends Component {
     return (
       <MDBNavbar color="black" dark expand="md">
         <MDBNavbarBrand href="/login">
-          <img src="/ninja.png" style={{ height: '4vw', width: '4vw' }} alt="eye"/>
+          <img
+            src="/ninja.png"
+            style={{ height: '4vw', width: '4vw' }}
+            alt="ninja"
+          />
           <strong className="white-text" to="/">
             resume-ninja
           </strong>
@@ -43,25 +47,35 @@ class NavbarPageTwo extends Component {
           </MDBNavbarNav>
 
           <MDBNavbarNav right>
-            <MDBNavItem>
-              <MDBDropdown>
-                <MDBDropdownToggle nav caret>
-                  <span className="mr-2">Menu</span>
-                </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem href="/account">Account</MDBDropdownItem>
-                  <MDBDropdownItem divider />
-                  <MDBDropdownItem href="/">Job Search</MDBDropdownItem>
-                  <MDBDropdownItem href="/resume">Resume</MDBDropdownItem>
-                  <MDBDropdownItem href="/learn">
-                    Learning Center
-                  </MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/login">HOHEOIFAHLIF</MDBNavLink>
-            </MDBNavItem>
+            {window.location.pathname === '/login' ||
+            window.location.pathname === '/signup' ||
+            window.location.pathname === '/home' ? (
+              <>
+                <MDBNavItem>
+                  <MDBNavLink to="/login">Login</MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink to="/signup">Create Account</MDBNavLink>
+                </MDBNavItem>
+              </>
+            ) : (
+              <MDBNavItem>
+                <MDBDropdown>
+                  <MDBDropdownToggle nav caret>
+                    <span className="mr-2">Menu</span>
+                  </MDBDropdownToggle>
+                  <MDBDropdownMenu>
+                    <MDBDropdownItem href="/account">Account</MDBDropdownItem>
+                    <MDBDropdownItem divider />
+                    <MDBDropdownItem href="/">Job Search</MDBDropdownItem>
+                    <MDBDropdownItem href="/resume">Resume</MDBDropdownItem>
+                    <MDBDropdownItem href="/learn">
+                      Learning Center
+                    </MDBDropdownItem>
+                  </MDBDropdownMenu>
+                </MDBDropdown>
+              </MDBNavItem>
+            )}
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
