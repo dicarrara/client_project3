@@ -1,14 +1,11 @@
-import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
-import NavBarLoged from "../../components/NavBarLoged/NavBarLoged";
-import "./Account.css";
-import CardForJob from "../../components/CardForJob/CardForJob";
+import React from 'react';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import './JobSearch.css';
+import CardForJob from '../../components/CardForJob/CardForJob';
 
-
-function AccountPage() {
+function JobSearch() {
   return (
     <>
-      <NavBarLoged />
       <MDBContainer>
         <MDBRow>
           <MDBCol size="6">
@@ -50,12 +47,11 @@ function AccountPage() {
           </MDBBtn>
         </MDBRow>
         <MDBRow>
-        <CardForJob />
+          <CardForJob />
         </MDBRow>
       </MDBContainer>
-      
     </>
   );
 }
 
-export default AccountPage;
+export default JobSearch;
