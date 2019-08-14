@@ -1,5 +1,6 @@
 import React from 'react';
-
+import NavBar from './components/NavBar/NavBar';
+import Footer from './components/Footer/Footer';
 import LoginScreen from './pages/LogIn/LoginScreen';
 import SighUp from './pages/SignUp/SignUp';
 import Home from './pages/Home/Home'
@@ -11,8 +12,8 @@ import AccountPage from './pages/Account/AccountPage';
 function App() {
   return (
     <Router>
-      <div>
-        
+      
+        <NavBar/>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/login" component={LoginScreen} />
@@ -20,7 +21,7 @@ function App() {
           <Route exact path="/account" component ={AccountPage}/>
           
         </Switch>
-      </div>
+      <Footer/>
     </Router>
   );
 }

@@ -1,15 +1,13 @@
 import React from "react";
-import NavBar from "../../components/NavBar/NavBar";
+// import NavBar from "../../components/NavBar/NavBar";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import "./Home.css";
-import Footer from "../../components/Footer/Footer";
 // import CarouselResume from "../../components/Carousel/Carousel";
 // import ResumePics from "../../components/ResumePicture/ResumePics"
 
 function Home() {
   return (
     <>
-      <NavBar />
       <MDBContainer>
         <MDBRow>
           <MDBCol size="6">
@@ -22,7 +20,7 @@ function Home() {
           </MDBCol>
         </MDBRow>
       </MDBContainer>
-      <Footer />
+      
     </>
   );
 }

@@ -1,6 +1,16 @@
 import React, { Component } from "react";
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import "./Login.css";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBModalFooter,
+  MDBIcon,
+  MDBCardHeader,
+  MDBBtn,
+  MDBInput
+} from "mdbreact";
 
 export default class Login extends Component {
   constructor(props) {
@@ -20,54 +30,61 @@ export default class Login extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
-  }
+  };
 
   render() {
     return (
-      <div className="Login">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
-            <FormLabel>Email</FormLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <FormLabel>Password</FormLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <Button
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-          >
-            Login
-          </Button>
-          <br></br>
-          <Button
-            block
-            bsSize="large"
-            type="submit"
-            
-          >
-            Sign Up
-          </Button>
-  
+      <MDBContainer>
+        <MDBRow className="d-flex justify-content-center">
+          <MDBCol md="6">
+            <MDBCard className="d-flex justify-content-center">
+              <MDBCardBody >
+                <MDBCardHeader className="form-header deep-blue-gradient rounded">
+                  <h3 className="my-3">
+                    <MDBIcon icon="lock" /> Login:
+                  </h3>
+                </MDBCardHeader>
+                <form>
+                  <div className="grey-text">
+                    <MDBInput
+                      label="Type your email"
+                      icon="envelope"
+                      group
+                      type="email"
+                      validate
+                      error="wrong"
+                      success="right"
+                    />
+                    <MDBInput
+                      label="Type your password"
+                      icon="lock"
+                      group
+                      type="password"
+                      validate
+                    />
+                  </div>
 
-        </form>
-      </div>
+                  <div className="text-center mt-4">
+                    <MDBBtn color="light-blue" className="mb-3" type="submit">
+                      Login
+                    </MDBBtn>
+                  </div>
+                </form>
+                <MDBModalFooter className="d-flex justify-content-center">
+                  <div className="font-weight-light">
+                    <p>Not a member? Sign Up</p>
+                    <p>Forgot Password?</p>
+                  </div>
+                </MDBModalFooter>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     );
   }
 }
