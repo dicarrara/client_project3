@@ -27,13 +27,13 @@ export default class SignUp extends Component {
     );
   }
 
-  handleChange = event => {
+  handleChange = function(event) {
     this.setState({
       [event.target.id]: event.target.value
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = function(event) {
     event.preventDefault();
 
     axios
@@ -64,23 +64,23 @@ export default class SignUp extends Component {
     return (
       <div className="SignUp">
         <form onSubmit={this.handleSubmit}>
+          <FormGroup controlId="firstName" bssize="large">
+            <FormLabel>First Name</FormLabel>
+            <FormControl
+              value={this.state.firstname}
+              onChange={this.handleChange}
+              type="text"
+            />
+          </FormGroup>
+          <FormGroup controlId="lastName" bssize="large">
+            <FormLabel>Last Name</FormLabel>
+            <FormControl
+              value={this.state.lastname}
+              onChange={this.handleChange}
+              type="text"
+            />
+          </FormGroup>
           <FormGroup controlId="email" bssize="large">
-            <FormGroup controlId="firstName" bssize="large">
-              <FormLabel>First Name</FormLabel>
-              <FormControl
-                value={this.state.firstname}
-                onChange={this.handleChange}
-                type="text"
-              />
-            </FormGroup>
-            <FormGroup controlId="lastName" bssize="large">
-              <FormLabel>Last Name</FormLabel>
-              <FormControl
-                value={this.state.lastname}
-                onChange={this.handleChange}
-                type="text"
-              />
-            </FormGroup>
             <FormLabel>Email</FormLabel>
             <FormControl
               autoFocus
