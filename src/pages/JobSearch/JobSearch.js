@@ -4,16 +4,17 @@ import './JobSearch.css';
 import CardForJob from '../../components/CardForJob/CardForJob';
 import axios from 'axios';
 
-class JobSearch extends Component{
-  state = {
-    jobtitle: '',
-    location: '',
-    jobs:[],
 
+export default class JobSearch extends Component {
+  // this.authChange = this.authChange.bind(this);
+  state = {
+    jobSearch: '',
+    jobLocation: '',
+    jobs: []
   };
 
   validateForm() {
-    return this.state.jobtitle.length > 0 && this.state.location.length > 0;
+    return this.state.jobSearch.length > 0;
   }
 
   handleChange = event => {
@@ -25,89 +26,90 @@ class JobSearch extends Component{
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state.jobtitle);
-    console.log(this.state.location);
+
+    let serverURL;
+    if (window.location.hostname === 'localhost') {
+      serverURL = 'http://localhost:8080';
+    } else {
+      serverURL = 'https://server-project3.herokuapp.com';
+    }
 
     axios
-      .get(`https://server-project3.herokuapp.com/api/${this.state.jobtitle}/true/${this.state.location}`)
+      .get(
+        `${serverURL}/api/${this.state.jobSearch}/${
+          this.state.jobLocation
+        }/true`
+      )
       .then(response => {
-        // this.setState({jobs:response})
-        console.log(response)
+        console.log(response.data.res);
+        this.setState({ jobs: response.data.res });
       })
       .catch(error => {
         console.log(error);
       });
-
-    
+    this.setState({
+      email: '',
+      password: ''
+    });
   };
-
-
 
   render() {
     return (
-        <>
-          <MDBContainer>
-            <MDBRow>
-              <MDBCol size="6">
-                <h1 className="text-black">Search for a job</h1>
-              </MDBCol>
-            </MDBRow>
-            <MDBRow>
-              <MDBCol md="6">
-                <div className="active-pink-3 active-pink-4 mb-4">
-                  <input
-                    onChange={this.handleChange}
-                    value={this.state.jobtitle}
-                    id="jobtitle"
-                    className="form-control"
-                    type="text"
-                    placeholder="Job Title"
-                    aria-label="Search"
-                  />
-                </div>
-              </MDBCol>
-    
-              <MDBCol md="6">
-                <div className="active-pink-3 active-pink-4 mb-4">
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Location"
-                    aria-label="Location"
-                    onChange={this.handleChange}
-                    value={this.state.location}
-                    id="location"
-                  />
-                </div>
-              </MDBCol>
-            </MDBRow>
-            <MDBRow>
-              <MDBBtn
-                gradient="aqua"
-                rounded
-                size="lg"
-                type="submit"
-                className="mr-center"
-                onClick={this.handleSubmit}
-              >
-                Search
-              </MDBBtn>
-            </MDBRow>
-            <MDBRow>
-              {/* {this.state.jobs.map(job => {
-                return (
-                 
-                )
-              })} */}
-               <CardForJob 
-                  />
-            </MDBRow>
-          </MDBContainer>
-        </>
-    )
-    
-  }
-  
-}
+      <>
+        <MDBContainer>
+          <MDBRow>
+            <MDBCol size="6">
+              <h1 className="text-black">Search for a job</h1>
+            </MDBCol>
+          </MDBRow>
+          <MDBRow>
+            <MDBCol md="6">
+              <div className="active-pink-3 active-pink-4 mb-4">
+                <input
+                  id="jobSearch"
+                  onChange={this.handleChange}
+                  value={this.state.jobSearch}
+                  className="form-control"
+                  type="text"
+                  placeholder="Job Title"
+                  aria-label="Search"
+                />
+              </div>
+            </MDBCol>
 
-export default JobSearch;
+            <MDBCol md="6">
+              <div className="active-pink-3 active-pink-4 mb-4">
+                <input
+                  id="jobLocation"
+                  onChange={this.handleChange}
+                  value={this.state.jobLocation}
+                  className="form-control"
+                  type="text"
+                  placeholder="Location"
+                  aria-label="Location"
+                />
+              </div>
+            </MDBCol>
+          </MDBRow>
+          <MDBRow>
+            <MDBBtn
+              gradient="aqua"
+              rounded
+              size="lg"
+              type="submit"
+              className="mr-center"
+              onClick={this.handleSubmit}
+            >
+              Search
+            </MDBBtn>
+          </MDBRow>
+          <MDBRow>
+            {this.state.jobs.map(job => {
+              return <CardForJob key={job.id} title={job.title} />;
+            })}
+          </MDBRow>
+        </MDBContainer>
+      </>
+    );
+  }
+}

@@ -36,23 +36,31 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state.email);
-    console.log(this.state.password);
+
+    let serverURL;
+    if (window.location.hostname === 'localhost') {
+      serverURL = 'http://localhost:8080';
+    } else {
+      serverURL = 'https://server-project3.herokuapp.com';
+    }
 
     axios
-      .post('https://server-project3.herokuapp.com/api/login', {
+      .post(`${serverURL}/api/login`, {
         email: this.state.email,
         password: this.state.password
       })
       .then(response => {
         console.log(response);
-        window.location.href = '/';
+        window.location.href = '/account';
       })
       .catch(error => {
         console.log(error);
       });
 
-    
+    this.setState({
+      email: '',
+      password: ''
+    });
   };
 
   render() {

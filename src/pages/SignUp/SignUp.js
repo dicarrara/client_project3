@@ -22,34 +22,50 @@ export default class SignUp extends Component {
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
       this.state.password === this.state.confirmPassword &&
-      this.state.firstname > 0 &&
-      this.state.lastname > 0
+      this.state.firstName > 0 &&
+      this.state.lastName > 0
     );
   }
 
-  handleChange = function(event) {
+  handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
   };
 
-  handleSubmit = function(event) {
+  // axios to create account
+  addAccount(url) {
+    return axios.post(`${url}/api/add/account`, {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password
+    });
+  }
+
+  // axios to login with credentials from create account
+  loginAccount(url, cred) {
+    return axios.post(`${url}/api/login`, {
+      email: cred.data.email,
+      password: cred.data.password
+    });
+  }
+
+  handleSubmit = async event => {
     event.preventDefault();
 
-    axios
-      .post('https://server-project3.herokuapp.com/api/add/account', {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(response => {
-        console.log(response);
-        window.location.href('/');
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    let serverURL;
+    if (window.location.hostname === 'localhost') {
+      serverURL = 'http://localhost:8080';
+    } else {
+      serverURL = 'https://server-project3.herokuapp.com';
+    }
+
+    let credentials = await this.addAccount(serverURL);
+    let loginConfirmation = await this.loginAccount(serverURL, credentials);
+
+    console.log(loginConfirmation);
+    window.location.href = '/account';
 
     this.setState({
       firstName: '',
@@ -67,7 +83,7 @@ export default class SignUp extends Component {
           <FormGroup controlId="firstName" bssize="large">
             <FormLabel>First Name</FormLabel>
             <FormControl
-              value={this.state.firstname}
+              value={this.state.firstName}
               onChange={this.handleChange}
               type="text"
             />
@@ -75,7 +91,7 @@ export default class SignUp extends Component {
           <FormGroup controlId="lastName" bssize="large">
             <FormLabel>Last Name</FormLabel>
             <FormControl
-              value={this.state.lastname}
+              value={this.state.lastName}
               onChange={this.handleChange}
               type="text"
             />
