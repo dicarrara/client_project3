@@ -29,7 +29,7 @@ class NavbarPageTwo extends Component {
   render() {
     return (
       <MDBNavbar color="black" dark expand="md">
-        <MDBNavbarBrand href="/login">
+        <MDBNavbarBrand href="/">
           <img
             src="/ninja.png"
             style={{ height: '4vw', width: '4vw' }}
