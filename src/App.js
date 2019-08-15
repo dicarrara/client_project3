@@ -17,12 +17,12 @@ import Home from './pages/Home/Home';
 import Login from './pages/LogIn/Login';
 import SignUp from './pages/SignUp/SignUp';
 import Account from './pages/Account/Account';
+import Resume from './pages/Resume/Resume';
 
-// Page Footer
-import Footer from './components/Footer/Footer';
 
 function PrivateRoute({ component: Component, authed, ...rest }) {
   return (
+
     <Route
       {...rest}
       render={props =>
@@ -78,6 +78,7 @@ export default class App extends Component {
           <Route exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/resume" component={Resume}/>
           <PrivateRoute
             authed={this.state.authed}
             exact

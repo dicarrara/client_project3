@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol} from 'mdbreact';
+
 import './Account.css';
 import axios from 'axios';
 axios.defaults.withCredentials = true;

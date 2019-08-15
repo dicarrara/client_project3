@@ -1,0 +1,14 @@
+.job__title, .job__date {
+
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    -webkit-margin-after: 0;
+    display: block
+}
+
+.job {
+    color: #95989A
+}
+  
+  

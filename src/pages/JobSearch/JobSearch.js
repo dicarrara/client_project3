@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import './JobSearch.css';
 import CardForJob from '../../components/CardForJob/CardForJob';
 import axios from 'axios';
+
 
 export default class JobSearch extends Component {
   // this.authChange = this.authChange.bind(this);

@@ -1,0 +1,12 @@
+.address {
+  font-size: 12px;
+  text-align: right;
+  line-height: 16px;
+  font-weight: bold;
+  color: #95989a;
+}
+
+.address__street,
+.address__city {
+  display: block;
+}

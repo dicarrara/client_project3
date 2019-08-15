@@ -1,0 +1,30 @@
+.project__desc {
+    text-align: justify
+}
+
+
+.project__desc {
+    text-align: left;
+    font-size: 14px;
+    display: block;
+    line-height: 1.25
+}
+
+.project__title {
+    margin-top: 14px;
+}   
+ 
+
+.project__title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    -webkit-margin-after: 0;
+    display: block
+}
+
+.project {
+    color: #95989A
+}
+  
+ 

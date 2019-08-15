@@ -1,0 +1,25 @@
+.name {
+  text-align: center;
+  padding: 4px;
+  margin-top: 20px;
+  line-height: 1px;
+  background: #d75e27;
+  width: 150px;
+  height: 150px;
+  color: white;
+  border-radius: 50%;
+  border: 20px solid white;
+  line-height: 6px;
+}
+
+.name__first {
+  font-weight: 300;
+  display: block;
+  margin-top: 57px;
+}
+
+.name__last {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+}
