@@ -1,23 +1,29 @@
 import React from 'react';
-import { MDBBtn, MDBIcon, MDBCard, MDBCardBody,MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import {
+  MDBBtn,
+  MDBIcon,
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCol
+} from 'mdbreact';
 
-const CardForJob = () => {
+const CardForJob = props => {
   return (
     <MDBCol>
-      <MDBCard style={{ width: "22rem" }}>
-        
+      <MDBCard key={props.id} style={{ width: '22rem' }}>
         <MDBCardBody>
-          <MDBCardTitle>Job Title</MDBCardTitle>
-          <MDBCardText>
-            You matched with this words:
-          </MDBCardText>
-          <MDBBtn gradient="aqua" href="#">
-            <MDBIcon icon="star" />
+          <MDBCardTitle>{props.title}</MDBCardTitle>
+          <MDBCardText>You matched with this words:</MDBCardText>
+          <MDBCardText>{props.description}</MDBCardText>
+          <MDBBtn gradient="aqua" href={props.url}>
+            <MDBIcon>See more!</MDBIcon>
           </MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
-  )
-}
+  );
+};
 
 export default CardForJob;
