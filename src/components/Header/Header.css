@@ -1,0 +1,24 @@
+.header {
+  background: #e4e4e4;
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.name {
+  text-align: center;
+  padding: 4px;
+  margin: 20px;
+  line-height: 1px;
+  background: #d75e27;
+  width: 150px;
+  height: 150px;
+  color: white;
+  border-radius: 50%;
+  border: 20px solid white;
+  line-height: 6px;
+}
+

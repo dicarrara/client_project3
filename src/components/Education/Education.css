@@ -1,0 +1,30 @@
+.school {
+  color: #95989a;
+}
+
+.school__name,
+.school__location,
+.project__title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  -webkit-margin-after: 0;
+  display: block;
+}
+
+.school__location {
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.school__degree,
+.school__cos {
+  text-align: left;
+  font-size: 14px;
+  display: block;
+  line-height: 1.25;
+}
+
+.school__cos {
+  margin-bottom: 14px;
+}

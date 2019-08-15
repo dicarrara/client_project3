@@ -11,9 +11,8 @@ import Home from './pages/Home/Home';
 import Login from './pages/LogIn/Login';
 import SignUp from './pages/SignUp/SignUp';
 import Account from './pages/Account/Account';
+import Resume from './pages/Resume/Resume';
 
-// Page Footer
-import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -25,8 +24,9 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/account" component={Account} />
+        <Route exact path="/resume" component={Resume}/>
       </Switch>
-      <Footer />
+      
     </Router>
   );
 }

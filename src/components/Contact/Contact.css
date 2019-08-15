@@ -1,0 +1,19 @@
+.contact {
+  font-size: 12px;
+  text-align: left;
+  line-height: 16px;
+  font-weight: bold;
+  color: #95989a;
+  
+}
+
+.contact__email,
+.contact__phone {
+  display: block;
+  
+}
+
+p {
+  margin: 0 !important;
+  padding: 0 !important
+}
