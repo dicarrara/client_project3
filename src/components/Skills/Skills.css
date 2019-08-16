@@ -1,0 +1,19 @@
+.ratings {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  border-bottom: 1px solid #bcbcbc;
+}
+
+.skills-header {
+  text-align: center;
+  width: 48%
+}
+
+.heading {
+  text-align: left;
+  color: #479099;
+  font-weight: 700;
+  
+}

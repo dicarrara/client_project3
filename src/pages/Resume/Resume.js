@@ -61,7 +61,7 @@ class Resume extends React.Component {
     return (
       <div id="resume">
         <Header />
-        <Summary summary="Cortado Steve Jobs parallax parallax waterfall is so 2000 and late thought leader iterate pair programming physical computing. Thinker-maker-doer thinker-maker-doer earned media integrate grok latte experiential responsive innovate unicorn. Waterfall is so 2000 and late cortado thinker-maker-doer thought leader actionable insight big data earned media long shadow ideate waterfall is so 2000 and late." />
+        <Summary summary="Cortado Steve Jobs parallax parallax waterfall is so 2000 and late thought leader iterate pair programming physical computing. Thinker-maker-doer thinker-maker-doer earned media integrate grok latte experiential responsive innovate unicorn." />
         <Skills />
         <div className="qualifications">
           <Experience />

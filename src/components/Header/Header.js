@@ -14,7 +14,7 @@ class Header extends React.Component {
     return (
       <header className="header">
         <Address street="1 Hacker Way" city="Menlo Park, CA 94025" />
-        <ResumeTitle firstName="John" lastName="Dunn" />
+        <ResumeTitle fullName="John Snow" />
         <Contact email="email@company.com" phone="(123) 456-7890" />
       </header>
     );
