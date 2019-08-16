@@ -6,7 +6,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import './App.css';
-import axios from 'axios';
+// import axios from 'axios';
 
 // Page Head
 import NavBar from './components/NavBar/NavBar';
@@ -86,7 +86,7 @@ export default class App extends Component {
             component={Account}
           />
         </Switch>
-        <Footer />
+       
       </Router>
     );
   }

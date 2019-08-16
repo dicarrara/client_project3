@@ -5,7 +5,7 @@ import "./Footer.css";
 // import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => (
-  <footer className="fixed-bottom">
+  <footer>
     <div className="container-fluid text-center">
       <p> &copy; {new Date().getFullYear()} Copyright: RDSproduction</p>
     </div>
