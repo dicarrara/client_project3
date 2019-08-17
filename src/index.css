@@ -6,10 +6,17 @@ body {
   font-family: sans-serif;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  
+}
+
 #root {
   display: flex;
   flex-direction: column;
   height: 100%;
+   
 }
 
 .content {

@@ -16,13 +16,14 @@ import {
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     };
   }
 
@@ -41,10 +42,10 @@ export default class Login extends Component {
     event.preventDefault();
 
     let serverURL;
-    if (window.location.hostname === 'localhost') {
-      serverURL = 'http://localhost:8080';
+    if (window.location.hostname === "localhost") {
+      serverURL = "http://localhost:8080";
     } else {
-      serverURL = 'https://server-project3.herokuapp.com';
+      serverURL = "https://server-project3.herokuapp.com";
     }
 
     axios
@@ -62,8 +63,8 @@ export default class Login extends Component {
       });
 
     this.setState({
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     });
   };
 
@@ -72,57 +73,47 @@ export default class Login extends Component {
       <MDBContainer>
         <MDBRow className="d-flex justify-content-center">
           <MDBCol md="6">
-            <MDBCard className="d-flex justify-content-center">
-              <MDBCardBody>
-                <MDBCardHeader className="form-header deep-blue-gradient rounded">
-                  <h3 className="my-3">
-                    <MDBIcon icon="lock" /> Login:
-                  </h3>
-                </MDBCardHeader>
-                <form onSubmit={this.handleSubmit}>
-                  <div className="grey-text">
-                    <MDBInput
-                      id="email"
-                      label="Type your email"
-                      icon="envelope"
-                      group
-                      type="email"
-                      validate
-                      onChange={this.handleChange}
-                      value={this.state.email}
-                      error="wrong"
-                      success="right"
-                    />
-                    <MDBInput
-                      id="password"
-                      label="Type your password"
-                      icon="lock"
-                      type="password"
-                      onChange={this.handleChange}
-                      value={this.state.password}
-                    />
-                  </div>
+            <form onSubmit={this.handleSubmit}>
+              <p className="h3 text-center md-6">Log In</p>
+              <div className="grey-text">
+                <MDBInput
+                  label="Your email"
+                  icon="envelope"
+                  group
+                  type="email"
+                  validate
+                  error="wrong"
+                  success="right"
+                  id="email"
+                  key="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+                <MDBInput
+                  label="Your password"
+                  icon="lock"
+                  group
+                  type="password"
+                  validate
+                  id="password"
+                  key="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </div>
 
-                  <div className="text-center mt-4">
-                    <MDBBtn
-                      color="light-blue"
-                      className="mb-3"
-                      disabled={!this.validateForm}
-                      type="submit"
-                      onClick={this.handleSubmit}
-                    >
-                      Login
-                    </MDBBtn>
-                  </div>
-                </form>
-                <MDBModalFooter className="d-flex justify-content-center">
-                  <div className="font-weight-light">
-                    <p>Not a member? Sign Up</p>
-                    <p>Forgot Password?</p>
-                  </div>
-                </MDBModalFooter>
-              </MDBCardBody>
-            </MDBCard>
+              <div className="text-center mt-4">
+                <MDBBtn
+                  color="cyan lighten-1"
+                  className="mb-3"
+                  disabled={!this.validateForm}
+                  type="submit"
+                  onClick={this.handleSubmit}
+                >
+                  Log In
+                </MDBBtn>
+              </div>
+            </form>
           </MDBCol>
         </MDBRow>
       </MDBContainer>

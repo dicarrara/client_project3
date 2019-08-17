@@ -1,20 +1,22 @@
 .skill__name {
-    display: inline-block;
-  width: 80px;
+  display: inline-block;
+  
   font-weight: 600;
   color: #95989A;
-  font-size: 10px;
+  font-size: 13px;
   -webkit-margin-before: 0
 
 }
-  
-/*   
-// Change the background  
+
 div.ui.star.skill__rating>.active.icon
-  color #D75E27 !important
+ {
+  color: #D75E27 !important
+ }  
   
 div.ui.star.skill__rating>.selected.icon,
-div.ui.star.skill__rating>.active.selected.icon,
-  color #D75E27 !important
-  opacity 0.75 !important */
+div.ui.star.skill__rating>.active.selected.icon {
+  color: #D75E27 !important;
+  opacity: 0.75 !important 
+  
+}
   

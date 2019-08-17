@@ -1,5 +1,6 @@
 import React from "react";
-import "./FooterResume.css"
+import "./FooterResume.css";
+import { Label, Icon } from 'semantic-ui-react'
 
 class FooterResume extends React.Component {
     // eslint-disable-next-line no-useless-constructor
@@ -11,7 +12,7 @@ class FooterResume extends React.Component {
       return (
         <footer className="footer">
           <div className="footer__inner" contentEditable={true}>
-            {/* <Label>
+            <Label>
               <Icon name='briefcase' /> {this.props.portfolioUrl}
             </Label>
             <Label>
@@ -19,7 +20,7 @@ class FooterResume extends React.Component {
             </Label>
             <Label>
               <Icon name='mail' /> {this.props.email}
-            </Label> */}
+            </Label>
           </div>
         </footer>
       );

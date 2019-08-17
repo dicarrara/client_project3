@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 
+
 // Page Head
 import NavBar from './components/NavBar/NavBar';
 

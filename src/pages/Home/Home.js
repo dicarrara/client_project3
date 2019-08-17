@@ -1,6 +1,6 @@
 import React from "react";
 // import NavBar from "../../components/NavBar/NavBar";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from "mdbreact";
 import "./Home.css";
 // import CarouselResume from "../../components/Carousel/Carousel";
 // import ResumePics from "../../components/ResumePicture/ResumePics"
@@ -19,8 +19,21 @@ function Home() {
             <MDBBtn gradient="aqua">Start</MDBBtn>
           </MDBCol>
         </MDBRow>
+        <MDBRow>
+          <MDBCol size="4">
+            <MDBIcon icon="university" size="5x" className="cyan-text"/>
+            <p>Tutorials</p>
+          </MDBCol>
+          <MDBCol size="4">
+            <MDBIcon icon="university" size="5x" className="cyan-text"/>
+            <p>Resume builder</p>
+          </MDBCol>
+          <MDBCol size="4">
+            <MDBIcon icon="university" size="5x" className="cyan-text"/>
+            <p>Job Search</p>
+          </MDBCol>
+        </MDBRow>
       </MDBContainer>
-      
     </>
   );
 }

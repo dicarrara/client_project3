@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
-import { FormGroup, FormControl, Button, FormLabel } from 'react-bootstrap';
-// import LoaderButton from "../components/LoaderButton";
-import './SignUp.css';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import axios from 'axios';
-
 axios.defaults.withCredentials = true;
 
 export default class SignUp extends Component {
@@ -56,10 +53,10 @@ export default class SignUp extends Component {
     event.preventDefault();
 
     let serverURL;
-    if (window.location.hostname === 'localhost') {
-      serverURL = 'http://localhost:8080';
+    if (window.location.hostname === "localhost") {
+      serverURL = "http://localhost:8080";
     } else {
-      serverURL = 'https://server-project3.herokuapp.com';
+      serverURL = "https://server-project3.herokuapp.com";
     }
 
     let credentials = await this.addAccount(serverURL);
@@ -84,54 +81,81 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <div className="SignUp">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="fullName" bssize="large">
-            <FormLabel>Full Name</FormLabel>
-            <FormControl
-              value={this.state.fullName}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </FormGroup>
-          <FormGroup controlId="email" bssize="large">
-            <FormLabel>Email</FormLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" bssize="large">
-            <FormLabel>Password</FormLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <FormGroup controlId="confirmPassword" bssize="large">
-            <FormLabel>Confirm Password</FormLabel>
-            <FormControl
-              value={this.state.confirmPassword}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <Button
-            block
-            bssize="large"
-            disabled={!this.validateForm}
-            type="submit"
-            onClick={this.handleSubmit}
-          >
-            Submit
-          </Button>
-        </form>
+      <MDBContainer>
+        <MDBRow className="d-flex justify-content-center">
+          <MDBCol md="6">
+            <form onSubmit={this.handleSubmit}>
+              <p className="h3  md-6">Sign up</p>
+              <div className="grey-text">
+                <MDBInput
+                  label="Your name"
+                  icon="user"
+                  group
+                  type="text"
+                  validate
+                  error="wrong"
+                  success="right"
+                  id="fullName"
+                  key="fullName"
+                  value={this.state.fullName}
+                  onChange={this.handleChange}
+                />
 
+                <MDBInput
+                  label="Your email"
+                  icon="envelope"
+                  group
+                  type="email"
+                  validate
+                  error="wrong"
+                  success="right"
+                  id="email"
+                  key="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+                <MDBInput
+                  label="Your password"
+                  icon="lock"
+                  group
+                  type="password"
+                  id="password"
+                  key="password"
+                  validate
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+
+                <MDBInput
+                  label="Confirm your password"
+                  icon="exclamation-triangle"
+                  group
+                  type="password"
+                  id="confirmPassword"
+                  key="confirmPassword"
+                  validate
+                  value={this.state.confirmPassword}
+                  onChange={this.handleChange}
+                />
+              </div>
+
+              <div className="text-center mt-4">
+                <MDBBtn
+                  color="cyan lighten-1"
+                  className="mb-3"
+                  disabled={!this.validateForm}
+                  type="submit"
+                  onClick={this.handleSubmit}
+                >
+                  Submit
+                </MDBBtn>
+              </div>
+            </form>
+          </MDBCol>
+        </MDBRow>
+      
         {this.state.redirect ? <Redirect to="/" /> : <Redirect to="/signup" />}
-      </div>
+      </MDBContainer>
     );
   }
 }
