@@ -79,7 +79,7 @@ export default class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
               <Route exact path="/resume" component={Resume}/>
-          <PrivateRoute
+          <Route
             authed={this.state.authed}
             exact
             path="/account"
