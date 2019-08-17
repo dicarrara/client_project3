@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { FormGroup, FormControl, Button, FormLabel } from 'react-bootstrap';
-// import LoaderButton from "../components/LoaderButton";
-import './SignUp.css';
+import React, { Component } from "react";
+import axios from "axios";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
+      fullName: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
     };
   }
 
@@ -22,8 +19,7 @@ export default class SignUp extends Component {
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
       this.state.password === this.state.confirmPassword &&
-      this.state.firstName > 0 &&
-      this.state.lastName > 0
+      this.state.fullName > 0
     );
   }
 
@@ -36,8 +32,7 @@ export default class SignUp extends Component {
   // axios to create account
   addAccount(url) {
     return axios.post(`${url}/api/add/account`, {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
+      fullName: this.state.fullName,
       email: this.state.email,
       password: this.state.password
     });
@@ -55,83 +50,101 @@ export default class SignUp extends Component {
     event.preventDefault();
 
     let serverURL;
-    if (window.location.hostname === 'localhost') {
-      serverURL = 'http://localhost:8080';
+    if (window.location.hostname === "localhost") {
+      serverURL = "http://localhost:8080";
     } else {
-      serverURL = 'https://server-project3.herokuapp.com';
+      serverURL = "https://server-project3.herokuapp.com";
     }
 
     let credentials = await this.addAccount(serverURL);
     let loginConfirmation = await this.loginAccount(serverURL, credentials);
 
     console.log(loginConfirmation);
-    window.location.href = '/account';
+    window.location.href = "/account";
 
     this.setState({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
+      fullName: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
     });
   };
 
   render() {
     return (
-      <div className="SignUp">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="firstName" bssize="large">
-            <FormLabel>First Name</FormLabel>
-            <FormControl
-              value={this.state.firstName}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </FormGroup>
-          <FormGroup controlId="lastName" bssize="large">
-            <FormLabel>Last Name</FormLabel>
-            <FormControl
-              value={this.state.lastName}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </FormGroup>
-          <FormGroup controlId="email" bssize="large">
-            <FormLabel>Email</FormLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" bssize="large">
-            <FormLabel>Password</FormLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <FormGroup controlId="confirmPassword" bssize="large">
-            <FormLabel>Confirm Password</FormLabel>
-            <FormControl
-              value={this.state.confirmPassword}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <Button
-            block
-            bssize="large"
-            disabled={!this.validateForm}
-            type="submit"
-            onClick={this.handleSubmit}
-          >
-            Submit
-          </Button>
-        </form>
-      </div>
+      <MDBContainer>
+        <MDBRow className="d-flex justify-content-center">
+          <MDBCol md="6">
+            <form onSubmit={this.handleSubmit}>
+              <p className="h3  md-6">Sign up</p>
+              <div className="grey-text">
+                <MDBInput
+                  label="Your name"
+                  icon="user"
+                  group
+                  type="text"
+                  validate
+                  error="wrong"
+                  success="right"
+                  id="fullName"
+                  key="fullName"
+                  value={this.state.fullName}
+                  onChange={this.handleChange}
+                />
+
+                <MDBInput
+                  label="Your email"
+                  icon="envelope"
+                  group
+                  type="email"
+                  validate
+                  error="wrong"
+                  success="right"
+                  id="email"
+                  key="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+                <MDBInput
+                  label="Your password"
+                  icon="lock"
+                  group
+                  type="password"
+                  id="password"
+                  key="password"
+                  validate
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+
+                <MDBInput
+                  label="Confirm your password"
+                  icon="exclamation-triangle"
+                  group
+                  type="password"
+                  id="confirmPassword"
+                  key="confirmPassword"
+                  validate
+                  value={this.state.confirmPassword}
+                  onChange={this.handleChange}
+                />
+              </div>
+
+              <div className="text-center mt-4">
+                <MDBBtn
+                  color="cyan lighten-1"
+                  className="mb-3"
+                  disabled={!this.validateForm}
+                  type="submit"
+                  onClick={this.handleSubmit}
+                >
+                  Submit
+                </MDBBtn>
+              </div>
+            </form>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
     );
   }
 }
