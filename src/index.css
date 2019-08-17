@@ -1,12 +1,9 @@
 html,
 body {
-  height: 100%;
+  min-height: 400px;
+  margin-bottom: 90px;
+  clear: both;
   font-family: sans-serif;
-}
-
-body {
-  margin: 0;
-  padding: 0;
 }
 
 #root {

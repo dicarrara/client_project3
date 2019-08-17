@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol} from 'mdbreact';
+import { Redirect } from 'react-router-dom';
+import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
 
 import './Account.css';
 import axios from 'axios';
@@ -38,24 +39,24 @@ export default class Account extends Component {
       });
   };
 
-  // componentWillMount() {
-  //   let serverURL;
-  //   if (window.location.hostname === 'localhost') {
-  //     serverURL = 'http://localhost:8080';
-  //   } else {
-  //     serverURL = 'https://server-project3.herokuapp.com';
-  //   }
+  componentWillMount() {
+    let serverURL;
+    if (window.location.hostname === 'localhost') {
+      serverURL = 'http://localhost:8080';
+    } else {
+      serverURL = 'https://server-project3.herokuapp.com';
+    }
 
-  //   axios
-  //     .get(`${serverURL}/api/checkauthentication`)
-  //     .then(response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //       window.location.href = '/home';
-  //     });
-  // }
+    axios
+      .get(`${serverURL}/api/checkauthentication`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+        return <Redirect to="/home" />;
+      });
+  }
 
   render() {
     return (

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import {
   MDBContainer,
   MDBRow,
@@ -12,6 +14,7 @@ import {
   MDBInput
 } from 'mdbreact';
 import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 export default class Login extends Component {
   constructor(props) {
@@ -51,7 +54,8 @@ export default class Login extends Component {
       })
       .then(response => {
         console.log(response);
-        window.location.href = '/account';
+        this.props.authenticate(true);
+        return <Redirect to="/" />;
       })
       .catch(error => {
         console.log(error);

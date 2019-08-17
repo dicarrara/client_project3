@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import { FormGroup, FormControl, Button, FormLabel } from 'react-bootstrap';
 // import LoaderButton from "../components/LoaderButton";
 import './SignUp.css';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName: '',
-      lastName: '',
+      fullName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      redirect: false
     };
   }
 
@@ -22,8 +25,7 @@ export default class SignUp extends Component {
       this.state.email.length > 0 &&
       this.state.password.length > 0 &&
       this.state.password === this.state.confirmPassword &&
-      this.state.firstName > 0 &&
-      this.state.lastName > 0
+      this.state.fullName > 0
     );
   }
 
@@ -36,8 +38,7 @@ export default class SignUp extends Component {
   // axios to create account
   addAccount(url) {
     return axios.post(`${url}/api/add/account`, {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
+      fullName: this.state.fullName,
       email: this.state.email,
       password: this.state.password
     });
@@ -62,17 +63,22 @@ export default class SignUp extends Component {
     }
 
     let credentials = await this.addAccount(serverURL);
+    console.log(credentials);
     let loginConfirmation = await this.loginAccount(serverURL, credentials);
-
     console.log(loginConfirmation);
-    window.location.href = '/account';
+
+    let auth = await axios.get(`${serverURL}/api/checkauthentication`);
+
+    console.log(auth);
+
+    this.props.authenticate(true);
 
     this.setState({
-      firstName: '',
-      lastName: '',
+      fullName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      redirect: true
     });
   };
 
@@ -80,18 +86,10 @@ export default class SignUp extends Component {
     return (
       <div className="SignUp">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="firstName" bssize="large">
-            <FormLabel>First Name</FormLabel>
+          <FormGroup controlId="fullName" bssize="large">
+            <FormLabel>Full Name</FormLabel>
             <FormControl
-              value={this.state.firstName}
-              onChange={this.handleChange}
-              type="text"
-            />
-          </FormGroup>
-          <FormGroup controlId="lastName" bssize="large">
-            <FormLabel>Last Name</FormLabel>
-            <FormControl
-              value={this.state.lastName}
+              value={this.state.fullName}
               onChange={this.handleChange}
               type="text"
             />
@@ -131,6 +129,8 @@ export default class SignUp extends Component {
             Submit
           </Button>
         </form>
+
+        {this.state.redirect ? <Redirect to="/" /> : <Redirect to="/signup" />}
       </div>
     );
   }
