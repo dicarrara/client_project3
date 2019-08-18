@@ -13,7 +13,7 @@ import CheckedBox from "../CheckedBox/CheckedBox";
 const ExperienceCard = props => {
     
   return (
-    <MDBCard style={{ width: "22rem" }}>
+    <MDBCard style={{ width: "30rem" }}>
       <MDBCardBody>
         <MDBCardTitle>Experience</MDBCardTitle>
         <form>

@@ -10,15 +10,12 @@
 
 .name {
   text-align: center;
-  padding: 4px;
+  padding-top: 50px;
   margin: 20px;
-  line-height: 1px;
   background: #479099;
-  width: 150px;
-  height: 150px;
   color: white;
   border-radius: 50%;
   border: 20px solid white;
-  line-height: 6px;
+  
 }
 

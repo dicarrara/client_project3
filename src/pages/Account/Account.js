@@ -83,13 +83,18 @@ export default class Account extends Component {
             <MDBCol size="4">
               <EducationCard/>
             </MDBCol>
+            </MDBRow>
+            <MDBRow>
             <MDBCol size="4">
               <SkillsCard/>
             </MDBCol>
-            <MDBCol size="4">
+            </MDBRow>
+            <MDBRow>
+            <MDBCol size="12">
               <ExperienceCard/>
             </MDBCol>
-          </MDBRow>
+            </MDBRow>
+          
         </MDBContainer>
       </>
     );

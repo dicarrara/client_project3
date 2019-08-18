@@ -12,7 +12,7 @@ import {
 const CardForJob = props => {
   return (
     <MDBCol>
-      <MDBCard key={props.id} style={{ width: '22rem' }}>
+      <MDBCard key={props.id} style={{ width: '22rem', height: '15rem', padding: '10px', margin: '10px' }}>
         <MDBCardBody>
           <MDBCardTitle>{props.title}</MDBCardTitle>
           <MDBCardText>You matched with this words:</MDBCardText>

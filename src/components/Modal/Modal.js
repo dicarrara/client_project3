@@ -1,32 +1,44 @@
-import React, { Component } from 'react';
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import React, { Component } from "react";
+import {
+  MDBContainer,
+  MDBBtn,
+  MDBModal,
+  MDBModalBody,
+  MDBModalHeader,
+  MDBModalFooter
+} from "mdbreact";
+import TextArea from "../TextArea/TextArea"
 
 class ModalPage extends Component {
-state = {
-  modal14: false
-}
+  state = {
+    modal14: false
+  };
 
-toggle = nr => () => {
-  let modalNumber = 'modal' + nr
-  this.setState({
-    [modalNumber]: !this.state[modalNumber]
-  });
-}
+  toggle = nr => () => {
+    let modalNumber = "modal" + nr;
+    this.setState({
+      [modalNumber]: !this.state[modalNumber]
+    });
+  };
 
-render() {
-  return (
+  render() {
+    return (
       <MDBContainer>
-        <MDBBtn color="primary" onClick={this.toggle(14)}>MDBModal</MDBBtn>
+        <MDBBtn color="primary" onClick={this.toggle(14)}>
+          Add
+        </MDBBtn>
         <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
-          <MDBModalHeader toggle={this.toggle(14)}>MDBModal title</MDBModalHeader>
+          <MDBModalHeader toggle={this.toggle(14)}>
+            {this.props.title}
+          </MDBModalHeader>
           <MDBModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat.
+          <TextArea/>
           </MDBModalBody>
           <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={this.toggle(14)}>Close</MDBBtn>
-            <MDBBtn color="primary">Save changes</MDBBtn>
+            <MDBBtn color="secondary" onClick={this.toggle(14)}>
+              Close
+            </MDBBtn>
+            <MDBBtn color="primary">Save</MDBBtn>
           </MDBModalFooter>
         </MDBModal>
       </MDBContainer>
