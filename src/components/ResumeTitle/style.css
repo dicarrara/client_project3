@@ -1,20 +1,10 @@
 .name {
-  text-align: center;
-  padding: 4px;
-  margin-top: 20px;
-  line-height: 1px;
-  background: #479099;
   width: 200px;
   height: 200px;
-  color: white;
-  border-radius: 60%;
-  border: 20px solid white;
-  line-height: 6px;
 }
 
 .name__first {
   font-weight: 300;
   display: block;
-  margin-top: 25%;
+  margin-top: 45%;
 }
-
