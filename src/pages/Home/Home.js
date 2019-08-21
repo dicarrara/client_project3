@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 // import NavBar from "../../components/NavBar/NavBar";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from "mdbreact";
-import "./Home.css";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
+import './Home.css';
 // import CarouselResume from "../../components/Carousel/Carousel";
 // import ResumePics from "../../components/ResumePicture/ResumePics"
 
@@ -16,20 +16,22 @@ function Home() {
               Creating a Professional Resume and Cover Letter Has Never Been So
               Easy
             </p>
-            <MDBBtn gradient="aqua">Start</MDBBtn>
+            <MDBBtn gradient="aqua" to="/signup">
+              Start
+            </MDBBtn>
           </MDBCol>
         </MDBRow>
         <MDBRow>
           <MDBCol size="4">
-            <MDBIcon icon="university" size="5x" className="cyan-text"/>
+            <MDBIcon icon="university" size="5x" className="cyan-text" />
             <p>Tutorials</p>
           </MDBCol>
           <MDBCol size="4">
-            <MDBIcon icon="university" size="5x" className="cyan-text"/>
+            <MDBIcon icon="university" size="5x" className="cyan-text" />
             <p>Resume builder</p>
           </MDBCol>
           <MDBCol size="4">
-            <MDBIcon icon="university" size="5x" className="cyan-text"/>
+            <MDBIcon icon="university" size="5x" className="cyan-text" />
             <p>Job Search</p>
           </MDBCol>
         </MDBRow>
