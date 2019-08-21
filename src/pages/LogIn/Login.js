@@ -1,14 +1,17 @@
-import React, { Component } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: "",
-      password: ""
+      email: '',
+      password: '',
+      redirect: false
     };
   }
 
@@ -27,10 +30,10 @@ export default class Login extends Component {
     event.preventDefault();
 
     let serverURL;
-    if (window.location.hostname === "localhost") {
-      serverURL = "http://localhost:8080";
+    if (window.location.hostname === 'localhost') {
+      serverURL = 'http://localhost:8080';
     } else {
-      serverURL = "https://server-project3.herokuapp.com";
+      serverURL = 'https://server-project3.herokuapp.com';
     }
 
     axios
@@ -40,16 +43,21 @@ export default class Login extends Component {
       })
       .then(response => {
         console.log(response);
-        window.location.href = "/account";
+        this.props.authenticate();
+        this.setState({
+          email: '',
+          password: '',
+          redirect: true
+        });
       })
       .catch(error => {
         console.log(error);
+        this.setState({
+          email: '',
+          password: '',
+          redirect: false
+        });
       });
-
-    this.setState({
-      email: "",
-      password: ""
-    });
   };
 
   render() {
@@ -100,6 +108,7 @@ export default class Login extends Component {
             </form>
           </MDBCol>
         </MDBRow>
+        {this.state.redirect ? <Redirect to="/" /> : <></>}
       </MDBContainer>
     );
   }

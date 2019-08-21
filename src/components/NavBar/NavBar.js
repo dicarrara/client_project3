@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import './NavBar.css';
 // import { BrowserRouter as Route} from "react-router-dom";
 import {
@@ -12,7 +14,8 @@ import {
   MDBDropdown,
   MDBDropdownToggle,
   MDBDropdownMenu,
-  MDBDropdownItem
+  MDBDropdownItem,
+  MDBIcon
 
   // MDBBtn
 } from 'mdbreact';
@@ -47,34 +50,48 @@ class NavbarPageTwo extends Component {
           </MDBNavbarNav>
 
           <MDBNavbarNav right>
-            {window.location.pathname === '/login' ||
-            window.location.pathname === '/signup' ||
-            window.location.pathname === '/home' ? (
+            {this.props.authed === false ? (
               <>
                 <MDBNavItem>
-                  <MDBNavLink to="/login">Login</MDBNavLink>
+                  <MDBNavLink to="/login">Login </MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
                   <MDBNavLink to="/signup">Create Account</MDBNavLink>
                 </MDBNavItem>
               </>
             ) : (
-              <MDBNavItem>
-                <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <span className="mr-2">Menu</span>
-                  </MDBDropdownToggle>
-                  <MDBDropdownMenu>
-                    <MDBDropdownItem href="/account">Account</MDBDropdownItem>
-                    <MDBDropdownItem divider />
-                    <MDBDropdownItem href="/">Job Search</MDBDropdownItem>
-                    <MDBDropdownItem href="/resume">Resume</MDBDropdownItem>
-                    <MDBDropdownItem href="/learn">
-                      Learning Center
-                    </MDBDropdownItem>
-                  </MDBDropdownMenu>
-                </MDBDropdown>
-              </MDBNavItem>
+              <>
+                <MDBNavItem>
+                  <MDBDropdown>
+                    <MDBDropdownToggle nav>
+                      <span className="mr-2">Menu</span>
+                    </MDBDropdownToggle>
+                    <MDBDropdownMenu>
+                      <MDBDropdownItem>
+                        <MDBNavLink to="/">Job Search</MDBNavLink>
+                      </MDBDropdownItem>
+                      <MDBDropdownItem>
+                        <MDBNavLink to="/resume">Resume</MDBNavLink>
+                      </MDBDropdownItem>
+                      <MDBDropdownItem>
+                        <MDBNavLink to="/learn">Learning Center</MDBNavLink>
+                      </MDBDropdownItem>
+                    </MDBDropdownMenu>
+                  </MDBDropdown>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink to="/account">
+                    <MDBIcon far icon="user" />
+                    Account
+                  </MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink to="/logout">
+                    <MDBIcon icon="sign-out-alt" />
+                    Logout
+                  </MDBNavLink>
+                </MDBNavItem>
+              </>
             )}
           </MDBNavbarNav>
         </MDBCollapse>

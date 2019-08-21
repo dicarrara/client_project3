@@ -1,16 +1,18 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      fullName: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
+      fullName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      redirect: false
     };
   }
 
@@ -50,24 +52,24 @@ export default class SignUp extends Component {
     event.preventDefault();
 
     let serverURL;
-    if (window.location.hostname === "localhost") {
-      serverURL = "http://localhost:8080";
+    if (window.location.hostname === 'localhost') {
+      serverURL = 'http://localhost:8080';
     } else {
-      serverURL = "https://server-project3.herokuapp.com";
+      serverURL = 'https://server-project3.herokuapp.com';
     }
 
     let credentials = await this.addAccount(serverURL);
     let loginConfirmation = await this.loginAccount(serverURL, credentials);
 
     console.log(loginConfirmation);
-    window.location.href = "/account";
 
     this.setState({
-      fullName: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
+      fullName: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
     });
+    this.props.auth(true);
   };
 
   render() {
@@ -91,7 +93,6 @@ export default class SignUp extends Component {
                   value={this.state.fullName}
                   onChange={this.handleChange}
                 />
-
                 <MDBInput
                   label="Your email"
                   icon="envelope"
@@ -116,7 +117,6 @@ export default class SignUp extends Component {
                   value={this.state.password}
                   onChange={this.handleChange}
                 />
-
                 <MDBInput
                   label="Confirm your password"
                   icon="exclamation-triangle"
@@ -129,7 +129,6 @@ export default class SignUp extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-
               <div className="text-center mt-4">
                 <MDBBtn
                   color="cyan lighten-1"
@@ -144,6 +143,7 @@ export default class SignUp extends Component {
             </form>
           </MDBCol>
         </MDBRow>
+        {this.state.redirect ? <Redirect to="/" /> : <></>}
       </MDBContainer>
     );
   }
