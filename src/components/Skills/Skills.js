@@ -6,6 +6,10 @@ class Skills extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
+    
+    this.state ={
+
+    }
   }
 
   render() {

@@ -18,9 +18,9 @@ export default class Account extends Component {
     super(props);
 
     this.state = {
-      fullName: "",
-      email: "",
-      password: ""
+      education: "",
+      skills: [],
+      experience: {},
     };
   }
 
@@ -33,15 +33,29 @@ export default class Account extends Component {
     }
 
     axios
-      .get(`${serverURL}/logout`)
+      .post(`${serverURL}/api/aboutme`, {
+        education: this.state.education,
+        skills: this.state.skills,
+        
+      })
       .then(response => {
         console.log(response);
-        window.location.href = "/home";
+        window.location.href = "/account";
       })
       .catch(error => {
         console.log(error);
       });
+
+    this.setState({
+      email: "",
+      password: ""
+    });
   };
+
+  handleInputChange = event => {
+    this.setState({ search: event.target.value })
+}
+
 
   // componentWillMount() {
   //   let serverURL;
