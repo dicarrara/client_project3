@@ -1,61 +1,134 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Component } from "react";
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-} from "mdbreact";
+import React, { Component } from 'react';
+import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
 
-import "./Account.css";
-import ExperienceCard from "../../components/ExperienceCard/ExperienceCard";
-import SkillsCard from "../../components/SkillsCard/SkillsCard";
-import EducationCard from "../../components/EducationCard/EducationCard";
-import axios from "axios";
+import './Account.css';
+import ExperienceCard from '../../components/ExperienceCard/ExperienceCard';
+import SkillsCard from '../../components/SkillsCard/SkillsCard';
+import EducationCard from '../../components/EducationCard/EducationCard';
+import axios from 'axios';
 axios.defaults.withCredentials = true;
+
+let serverURL;
+if (window.location.hostname === 'localhost') {
+  serverURL = 'http://localhost:8080';
+} else {
+  serverURL = 'https://server-project3.herokuapp.com';
+}
 
 export default class Account extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      education: "",
-      skills: [],
-      experience: {},
+      user: {
+        fullName: 'John Doe',
+        email: 'test@test.com',
+        addressStreet: 'somewhere Lane',
+        addressCity: 'Denver',
+        phone: 1234567890,
+        portfolioURL: 'www.IEATWEIRDTHINGS.ninja',
+        summary:
+          'I am a terrible person who does not like to eat bugs, but I do enjoy chocolate sometimes',
+        id: 123,
+        userSchool: [
+          {
+            schoolName: 'Harvard',
+            schoolLocation: 'US',
+            schoolDegree: 'eating',
+            schoolCourse: 'How to eat',
+            schoolYearFrom: 2011,
+            schoolYearTo: 2015
+          },
+          {
+            schoolName: 'MIT',
+            schoolLocation: 'US',
+            schoolDegree: 'computerz',
+            schoolCourse: 'How to computer',
+            schoolYearFrom: 2011,
+            schoolYearTo: 2015
+          },
+          {
+            schoolName: 'DU',
+            schoolLocation: 'US',
+            schoolDegree: 'code',
+            schoolCourse: 'How to code',
+            schoolYearFrom: 2011,
+            schoolYearTo: 2015
+          }
+        ],
+        skill: ['eating', 'computerz', 'coding'],
+        userWork: [
+          {
+            jobTitle: 'computer guy',
+            jobDate: '2017 - 2019',
+            jobSummary: 'did stuff'
+          },
+          {
+            jobTitle: 'Burger King',
+            jobDate: '2017 - 2019',
+            jobSummary: 'did stuff'
+          },
+          {
+            jobTitle: 'Dying',
+            jobDate: '2020 - 2020',
+            jobSummary: 'Died'
+          }
+        ]
+      }
     };
   }
 
   logout = function() {
     let serverURL;
-    if (window.location.hostname === "localhost") {
-      serverURL = "http://localhost:8080";
+    if (window.location.hostname === 'localhost') {
+      serverURL = 'http://localhost:8080';
     } else {
-      serverURL = "https://server-project3.herokuapp.com";
+      serverURL = 'https://server-project3.herokuapp.com';
     }
 
     axios
       .post(`${serverURL}/api/aboutme`, {
         education: this.state.education,
-        skills: this.state.skills,
-        
+        skills: this.state.skills
       })
       .then(response => {
         console.log(response);
-        window.location.href = "/account";
       })
       .catch(error => {
         console.log(error);
       });
 
     this.setState({
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     });
   };
 
-  handleInputChange = event => {
-    this.setState({ search: event.target.value })
-}
+  async componentDidMount() {
+    await axios
+      .get(`${serverURL}/api/checkauthentication`)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          authed: true,
+          user: {
+            fullName: response.data.res.fullName,
+            id: response.data.res._id,
+            email: response.data.res.email
+          }
+        });
+      })
+      .catch(error => {
+        this.setState({ authed: false });
+      });
+    console.log(this.state.authed);
+    console.log(this.state.user.id);
+  }
 
+  handleInputChange = event => {
+    this.setState({ search: event.target.value });
+  };
 
   // componentWillMount() {
   //   let serverURL;
@@ -95,20 +168,19 @@ export default class Account extends Component {
           </MDBRow>
           <MDBRow>
             <MDBCol size="4">
-              <EducationCard/>
+              <EducationCard />
             </MDBCol>
-            </MDBRow>
-            <MDBRow>
+          </MDBRow>
+          <MDBRow>
             <MDBCol size="4">
-              <SkillsCard/>
+              <SkillsCard />
             </MDBCol>
-            </MDBRow>
-            <MDBRow>
+          </MDBRow>
+          <MDBRow>
             <MDBCol size="12">
-              <ExperienceCard/>
+              <ExperienceCard />
             </MDBCol>
-            </MDBRow>
-          
+          </MDBRow>
         </MDBContainer>
       </>
     );
