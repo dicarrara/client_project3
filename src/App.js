@@ -66,8 +66,7 @@ export default class App extends Component {
     this.authFunc = this.authFunc.bind(this);
 
     this.state = {
-      authed: false,
-      user: { fullName: 'JOHN', email: 'blank@blank.com' }
+      authed: false
     };
   }
 
@@ -75,12 +74,21 @@ export default class App extends Component {
     await axios
       .get(`${serverURL}/api/checkauthentication`)
       .then(response => {
-        this.setState({ authed: true });
+        console.log(response);
+        this.setState({
+          authed: true,
+          user: {
+            fullName: response.data.res.fullName,
+            id: response.data.res._id,
+            email: response.data.res.email
+          }
+        });
       })
       .catch(error => {
         this.setState({ authed: false });
       });
     console.log(this.state.authed);
+    console.log(this.state.user.id);
   }
 
   authFunc = change => {

@@ -62,13 +62,6 @@ export default class SignUp extends Component {
     let loginConfirmation = await this.loginAccount(serverURL, credentials);
 
     console.log(loginConfirmation);
-
-    this.setState({
-      fullName: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    });
     this.props.auth(true);
   };
 
