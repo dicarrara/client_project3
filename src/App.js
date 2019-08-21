@@ -20,6 +20,9 @@ import Account from './pages/Account/Account';
 import Resume from './pages/Resume/Resume';
 import Logout from './pages/Logout/Logout';
 
+//  Page Footer
+import Footer from './components/Footer/Footer';
+
 const PrivateRouteOut = ({ component: Component, auth, authed, ...props }) => {
   return (
     <Route
@@ -88,7 +91,6 @@ export default class App extends Component {
         this.setState({ authed: false });
       });
     console.log(this.state.authed);
-    console.log(this.state.user.id);
   }
 
   authFunc = change => {

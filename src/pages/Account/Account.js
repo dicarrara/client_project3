@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol } from 'mdbreact';
-
-import './Account.css';
 import ExperienceCard from '../../components/ExperienceCard/ExperienceCard';
 import SkillsCard from '../../components/SkillsCard/SkillsCard';
 import EducationCard from '../../components/EducationCard/EducationCard';
+import './Account.css';
+
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 

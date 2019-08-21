@@ -1,9 +1,7 @@
 import React from 'react';
-// import NavBar from "../../components/NavBar/NavBar";
+import { Link } from 'react-router-dom';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
 import './Home.css';
-// import CarouselResume from "../../components/Carousel/Carousel";
-// import ResumePics from "../../components/ResumePicture/ResumePics"
 
 function Home() {
   return (
@@ -13,12 +11,11 @@ function Home() {
           <MDBCol size="6">
             <h1 className="text-black">The Online Resume Builder</h1>
             <p className="text-black">
-              Creating a Professional Resume and Cover Letter Has Never Been So
-              Easy
+              Creating a Professional Resume Has Never Been So Easy
             </p>
-            <MDBBtn gradient="aqua" to="/signup">
-              Start
-            </MDBBtn>
+            <Link to="/signup">
+              <MDBBtn gradient="aqua">Start</MDBBtn>
+            </Link>
           </MDBCol>
         </MDBRow>
         <MDBRow>

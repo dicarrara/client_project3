@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBBtn,
+  MDBInput,
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle
+} from 'mdbreact';
 import axios from 'axios';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+import './SignUp.css';
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -67,73 +77,81 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <MDBContainer>
-        <MDBRow className="d-flex justify-content-center">
+      <MDBContainer style={{ marginBottom: '50px' }}>
+        <MDBRow
+          className="d-flex justify-content-center"
+          style={{ marginTop: '6%', paddingTop: '0%' }}
+        >
           <MDBCol md="6">
-            <form onSubmit={this.handleSubmit}>
-              <p className="h3  md-6">Sign up</p>
-              <div className="grey-text">
-                <MDBInput
-                  label="Your name"
-                  icon="user"
-                  group
-                  type="text"
-                  validate
-                  error="wrong"
-                  success="right"
-                  id="fullName"
-                  key="fullName"
-                  value={this.state.fullName}
-                  onChange={this.handleChange}
-                />
-                <MDBInput
-                  label="Your email"
-                  icon="envelope"
-                  group
-                  type="email"
-                  validate
-                  error="wrong"
-                  success="right"
-                  id="email"
-                  key="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-                <MDBInput
-                  label="Your password"
-                  icon="lock"
-                  group
-                  type="password"
-                  id="password"
-                  key="password"
-                  validate
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                />
-                <MDBInput
-                  label="Confirm your password"
-                  icon="exclamation-triangle"
-                  group
-                  type="password"
-                  id="confirmPassword"
-                  key="confirmPassword"
-                  validate
-                  value={this.state.confirmPassword}
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="text-center mt-4">
-                <MDBBtn
-                  color="cyan lighten-1"
-                  className="mb-3"
-                  disabled={!this.validateForm}
-                  type="submit"
-                  onClick={this.handleSubmit}
-                >
-                  Submit
-                </MDBBtn>
-              </div>
-            </form>
+            <MDBCard style={{ width: '35vw', marginBotton: 'auto' }}>
+              <MDBCardBody>
+                <MDBCardTitle>Sign Up</MDBCardTitle>
+                <form onSubmit={this.handleSubmit}>
+                  {/* <p className="h3  md-6">Sign up</p> */}
+                  <div className="grey-text">
+                    <MDBInput
+                      label="Your name"
+                      icon="user"
+                      group
+                      type="text"
+                      validate
+                      error="wrong"
+                      success="right"
+                      id="fullName"
+                      key="fullName"
+                      value={this.state.fullName}
+                      onChange={this.handleChange}
+                    />
+                    <MDBInput
+                      label="Your email"
+                      icon="envelope"
+                      group
+                      type="email"
+                      validate
+                      error="wrong"
+                      success="right"
+                      id="email"
+                      key="email"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                    />
+                    <MDBInput
+                      label="Your password"
+                      icon="lock"
+                      group
+                      type="password"
+                      id="password"
+                      key="password"
+                      validate
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                    />
+                    <MDBInput
+                      label="Confirm your password"
+                      icon="exclamation-triangle"
+                      group
+                      type="password"
+                      id="confirmPassword"
+                      key="confirmPassword"
+                      validate
+                      value={this.state.confirmPassword}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="text-center mt-4">
+                    <MDBBtn
+                      color="cyan lighten-1"
+                      className="mb-3"
+                      disabled={!this.validateForm}
+                      type="submit"
+                      onClick={this.handleSubmit}
+                    >
+                      Submit
+                    </MDBBtn>
+                  </div>
+                </form>
+              </MDBCardBody>
+            </MDBCard>
           </MDBCol>
         </MDBRow>
         {this.state.redirect ? <Redirect to="/" /> : <></>}
