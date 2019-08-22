@@ -87,8 +87,8 @@ export default class App extends Component {
       .catch(error => {
         this.setState({ authed: false });
       });
-    console.log(this.state.authed);
-    console.log(this.state.user.id);
+    // console.log(this.state.authed);
+    // console.log(this.state.user.id);
   }
 
   authFunc = change => {

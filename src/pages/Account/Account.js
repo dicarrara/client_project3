@@ -130,24 +130,24 @@ export default class Account extends Component {
     this.setState({ search: event.target.value });
   };
 
-  // componentWillMount() {
-  //   let serverURL;
-  //   if (window.location.hostname === 'localhost') {
-  //     serverURL = 'http://localhost:8080';
-  //   } else {
-  //     serverURL = 'https://server-project3.herokuapp.com';
-  //   }
+  componentDidMount() {
+    let serverURL;
+    if (window.location.hostname === 'localhost') {
+      serverURL = 'http://localhost:8080';
+    } else {
+      serverURL = 'https://server-project3.herokuapp.com';
+    }
 
-  //   axios
-  //     .get(`${serverURL}/api/checkauthentication`)
-  //     .then(response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //       window.location.href = '/home';
-  //     });
-  // }
+    axios
+      .get(`${serverURL}/account`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+        window.location.href = '/home';
+      });
+  }
 
   render() {
     return (
@@ -157,8 +157,8 @@ export default class Account extends Component {
             <MDBCol size="6">
               <h2>Pesonal Data</h2>
               <h1>name:{this.state.fullName}</h1>
-              <p>email:</p>
-              <p>phone number:</p>
+              <p>email:{this.state.email}</p>
+              <p>phone number:{this.state.number}</p>
               <p>
                 {/* <a href="/account" onClick={this.logout}>
                   Logout?
