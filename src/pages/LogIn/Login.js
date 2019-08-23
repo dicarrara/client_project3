@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBBtn,
+  MDBInput,
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle
+} from 'mdbreact';
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
@@ -62,50 +71,54 @@ export default class Login extends Component {
 
   render() {
     return (
-      <MDBContainer>
+      <MDBContainer style={{ marginBottom: '35px' }}>
         <MDBRow className="d-flex justify-content-center">
-          <MDBCol md="6">
-            <form onSubmit={this.handleSubmit}>
-              <p className="h3 text-center md-6">Log In</p>
-              <div className="grey-text">
-                <MDBInput
-                  label="Your email"
-                  icon="envelope"
-                  group
-                  type="email"
-                  validate
-                  error="wrong"
-                  success="right"
-                  id="email"
-                  key="email"
-                  value={this.state.email}
-                  onChange={this.handleChange}
-                />
-                <MDBInput
-                  label="Your password"
-                  icon="lock"
-                  group
-                  type="password"
-                  validate
-                  id="password"
-                  key="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                />
-              </div>
+          <MDBCol className="d-flex justify-content-center" md="6">
+            <MDBCard style={{ width: '35vw', marginBotton: 'auto' }}>
+              <MDBCardBody>
+                <MDBCardTitle>Log In</MDBCardTitle>
+                <form onSubmit={this.handleSubmit}>
+                  <div className="grey-text">
+                    <MDBInput
+                      label="Your email"
+                      icon="envelope"
+                      group
+                      type="email"
+                      validate
+                      error="wrong"
+                      success="right"
+                      id="email"
+                      key="email"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                    />
+                    <MDBInput
+                      label="Your password"
+                      icon="lock"
+                      group
+                      type="password"
+                      validate
+                      id="password"
+                      key="password"
+                      value={this.state.password}
+                      onChange={this.handleChange}
+                    />
+                  </div>
 
-              <div className="text-center mt-4">
-                <MDBBtn
-                  color="cyan lighten-1"
-                  className="mb-3"
-                  disabled={!this.validateForm}
-                  type="submit"
-                  onClick={this.handleSubmit}
-                >
-                  Log In
-                </MDBBtn>
-              </div>
-            </form>
+                  <div className="text-center mt-4">
+                    <MDBBtn
+                      color="cyan lighten-1"
+                      className="mb-3"
+                      disabled={!this.validateForm}
+                      type="submit"
+                      onClick={this.handleSubmit}
+                    >
+                      Log In
+                    </MDBBtn>
+                  </div>
+                </form>
+              </MDBCardBody>
+            </MDBCard>
           </MDBCol>
         </MDBRow>
         {this.state.redirect ? <Redirect to="/" /> : <></>}

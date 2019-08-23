@@ -1,34 +1,49 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
-  // MDBBtn,
-  // MDBIcon,
+  MDBBtn,
+  MDBIcon,
   MDBCard,
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
   MDBCol
 } from 'mdbreact';
-import ModalPage from "../Modal/Modal"
+import ModalJob from '../ModalJob/ModalJob';
 
+export default class CardForJob extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {};
+  }
 
-const CardForJob = props => {
-  return (
-    <MDBCol>
-      <MDBCard key={props.id} style={{ width: '22rem', height: '20rem', padding: '10px', margin: '10px' }}>
-        <MDBCardBody>
-          <MDBCardTitle>{props.title}</MDBCardTitle>
-          <MDBCardText>You matched with this words:</MDBCardText>
-          <MDBCardText>{props.description}</MDBCardText>
-          <ModalPage/>
-          {/* <MDBBtn gradient="aqua" href={props.url}>
-            <MDBIcon>See more!              
-            </MDBIcon>
-          </MDBBtn> */}
-        </MDBCardBody>
-      </MDBCard>
-    </MDBCol>
-  );
-};
-
-export default CardForJob;
+  render() {
+    return (
+      <MDBCol>
+        <MDBCard
+          key={this.props.id}
+          style={{
+            width: '30vw',
+            height: '20rem',
+            padding: '10px',
+            margin: '10px'
+          }}
+        >
+          <MDBCardBody>
+            <MDBCardTitle>{this.props.title}</MDBCardTitle>
+            <MDBCardText>{this.props.company}</MDBCardText>
+            <MDBCardText>You matched with these words:</MDBCardText>
+            <MDBCardText>{this.props.words}</MDBCardText>
+            <ModalJob
+              id={this.props.id}
+              company={this.props.company}
+              title={this.props.title}
+              description={this.props.description}
+              url={this.props.url}
+            />
+          </MDBCardBody>
+        </MDBCard>
+      </MDBCol>
+    );
+  }
+}

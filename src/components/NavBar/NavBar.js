@@ -32,15 +32,15 @@ class NavbarPageTwo extends Component {
   render() {
     return (
       <MDBNavbar color="black" dark expand="md">
-        <MDBNavbarBrand href="/">
-          <img
-            src="/ninja.png"
-            style={{ height: '4vw', width: '4vw' }}
-            alt="ninja"
-          />
-          <strong className="white-text" to="/">
-            resume-ninja
-          </strong>
+        <MDBNavbarBrand>
+          <Link to={this.props.authed === false ? '/home' : '/'}>
+            <img
+              src="/ninja.png"
+              style={{ height: '4vw', width: '4vw' }}
+              alt="ninja"
+            />
+            <strong className="white-text">resume-ninja</strong>
+          </Link>
         </MDBNavbarBrand>
 
         <MDBNavbarToggler onClick={this.toggleCollapse} />
@@ -68,13 +68,13 @@ class NavbarPageTwo extends Component {
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
                       <MDBDropdownItem>
-                        <MDBNavLink to="/">Job Search</MDBNavLink>
+                        <Link to="/">Job Search</Link>
                       </MDBDropdownItem>
                       <MDBDropdownItem>
-                        <MDBNavLink to="/resume">Resume</MDBNavLink>
+                        <Link to="/resume">Resume</Link>
                       </MDBDropdownItem>
                       <MDBDropdownItem>
-                        <MDBNavLink to="/learn">Learning Center</MDBNavLink>
+                        <Link to="/learn">Learning Center</Link>
                       </MDBDropdownItem>
                     </MDBDropdownMenu>
                   </MDBDropdown>
