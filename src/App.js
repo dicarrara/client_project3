@@ -9,7 +9,7 @@ import './App.css';
 import axios from 'axios';
 
 // Page Head
-import NavBar from './components/NavBar/NavBar';
+import NavBar from './NavBar/NavBar';
 
 // Page Body
 import JobSearch from './pages/JobSearch/JobSearch';
@@ -19,9 +19,6 @@ import SignUp from './pages/SignUp/SignUp';
 import Account from './pages/Account/Account';
 import Resume from './pages/Resume/Resume';
 import Logout from './pages/Logout/Logout';
-
-//  Page Footer
-import Footer from './components/Footer/Footer';
 
 const PrivateRouteOut = ({ component: Component, auth, authed, ...props }) => {
   return (
