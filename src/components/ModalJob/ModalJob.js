@@ -28,14 +28,11 @@ class ModalPage extends Component {
   render() {
     return (
       <MDBContainer>
-        <MDBBtn gradient="aqua" onClick={this.toggle(14)}>
+        <MDBBtn color="cyan lighten-1" onClick={this.toggle(14)}>
           See More!
         </MDBBtn>
         <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
-          <MDBModalHeader
-            style={{ textAlign: 'left' }}
-            toggle={this.toggle(14)}
-          >
+          <MDBModalHeader style={{ textAlign: 'left' }} toggle={this.toggle(14)}>
             Position: {this.props.title}
             <br />
             Company: {this.props.company}
@@ -50,7 +47,7 @@ class ModalPage extends Component {
             <MDBBtn color="secondary" onClick={this.toggle(14)}>
               Close
             </MDBBtn>
-            <MDBBtn color="primary" href={this.props.url}>
+            <MDBBtn color="primary" href={this.props.url} target="_blank">
               Apply!
             </MDBBtn>
           </MDBModalFooter>

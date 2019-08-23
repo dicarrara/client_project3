@@ -1,19 +1,30 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Component } from "react";
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-import ExperienceCard from "../../components/ExperienceCard/ExperienceCard";
-import SkillsCard from "../../components/SkillsCard/SkillsCard";
-import EducationCard from "../../components/EducationCard/EducationCard";
-import "./Account.css";
+import React, { Component } from 'react';
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBBtn,
+  MDBIcon,
+  MDBInput,
+  MDBTable,
+  MDBTableHead,
+  MDBTableBody
+} from 'mdbreact';
+import ExperienceCard from '../../components/ExperienceCard/ExperienceCard';
+import SkillsCard from '../../components/SkillsCard/SkillsCard';
+import EducationCard from '../../components/EducationCard/EducationCard';
+import './Account.css';
 
-import axios from "axios";
+import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 let serverURL;
-if (window.location.hostname === "localhost") {
-  serverURL = "http://localhost:8080";
+if (window.location.hostname === 'localhost') {
+  serverURL = 'http://localhost:8080';
 } else {
-  serverURL = "https://server-project3.herokuapp.com";
+  serverURL = 'https://server-project3.herokuapp.com';
 }
 
 export default class Account extends Component {
@@ -21,151 +32,147 @@ export default class Account extends Component {
     super(props);
 
     this.state = {
-      user: {
-        fullName: "John Doe",
-        email: "test@test.com",
-        addressStreet: "somewhere Lane",
-        addressCity: "Denver",
-        phone: 1234567890,
-        portfolioURL: "www.IEATWEIRDTHINGS.ninja",
-        summary:
-          "I am a terrible person who does not like to eat bugs, but I do enjoy chocolate sometimes",
-        id: 123,
-        userSchool: [
-          {
-            schoolName: "Harvard",
-            schoolLocation: "US",
-            schoolDegree: "eating",
-            schoolCourse: "How to eat",
-            schoolYearFrom: 2011,
-            schoolYearTo: 2015
-          },
-          {
-            schoolName: "MIT",
-            schoolLocation: "US",
-            schoolDegree: "computerz",
-            schoolCourse: "How to computer",
-            schoolYearFrom: 2011,
-            schoolYearTo: 2015
-          },
-          {
-            schoolName: "DU",
-            schoolLocation: "US",
-            schoolDegree: "code",
-            schoolCourse: "How to code",
-            schoolYearFrom: 2011,
-            schoolYearTo: 2015
-          }
-        ],
-        skill: ["eating", "computerz", "coding"],
-        userWork: [
-          {
-            jobTitle: "computer guy",
-            jobDate: "2017 - 2019",
-            jobSummary: "did stuff"
-          },
-          {
-            jobTitle: "Burger King",
-            jobDate: "2017 - 2019",
-            jobSummary: "did stuff"
-          },
-          {
-            jobTitle: "Dying",
-            jobDate: "2020 - 2020",
-            jobSummary: "Died"
-          }
-        ]
-      }
+      id: this.props.user.id,
+      fullName: this.props.user.fullName,
+      email: this.props.user.email,
+      phone: this.props.user.phone,
+      portfolioURL: this.props.user.portfolioURL,
+      addressStreet: this.props.user.addressStreet,
+      addressCity: this.props.user.addressCity,
+      summary: this.props.user.summary
     };
   }
 
-  logout = function() {
-    let serverURL;
-    if (window.location.hostname === "localhost") {
-      serverURL = "http://localhost:8080";
-    } else {
-      serverURL = "https://server-project3.herokuapp.com";
-    }
-
-    axios
-      .post(`${serverURL}/api/aboutme`, {
-        education: this.state.education,
-        skills: this.state.skills
-      })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
+  api = {
+    accountSubmit: url => {
+      return axios.put(`${url}/api/account/details`, {
+        id: this.state.id,
+        fullName: this.state.fullName,
+        email: this.state.email,
+        phone: this.state.phone,
+        portfolioURL: this.state.portfolioURL,
+        addressStreet: this.state.addressStreet,
+        addressCity: this.state.addressCity,
+        summary: this.state.summary
       });
+    }
+  };
 
+  submitAccountDetails = async event => {
+    event.preventDefault();
+
+    let res = await this.api.accountSubmit(serverURL);
+    console.log(res);
+  };
+
+  handleChange = event => {
     this.setState({
-      email: "",
-      password: ""
+      [event.target.id]: event.target.value
     });
   };
-
-  async componentDidMount() {
-    await axios
-      .get(`${serverURL}/api/checkauthentication`)
-      .then(response => {
-        console.log(response);
-        this.setState({
-          authed: true,
-          user: {
-            fullName: response.data.res.fullName,
-            id: response.data.res._id,
-            email: response.data.res.email
-          }
-        });
-      })
-      .catch(error => {
-        this.setState({ authed: false });
-      });
-    console.log(this.state.authed);
-    console.log(this.state.user.id);
-  }
-
-  handleInputChange = event => {
-    this.setState({ search: event.target.value });
-  };
-
-  // componentWillMount() {
-  //   let serverURL;
-  //   if (window.location.hostname === 'localhost') {
-  //     serverURL = 'http://localhost:8080';
-  //   } else {
-  //     serverURL = 'https://server-project3.herokuapp.com';
-  //   }
-
-  //   axios
-  //     .get(`${serverURL}/api/checkauthentication`)
-  //     .then(response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //       window.location.href = '/home';
-  //     });
-  // }
 
   render() {
     return (
       <>
         <MDBContainer>
-          <MDBRow>
-            <MDBCol size="6">
-              <h2>Pesonal Data</h2>
-              <h1>name:{this.state.fullName}</h1>
-              <p>email:</p>
-
-              <p>
-                {/* <a href="/account" onClick={this.logout}>
-                  Logout?
-                </a> */}
-              </p>
+          <MDBRow style={{ paddingTop: '8%' }}>
+            <MDBCol size="12">
+              <h1>Account Info: </h1>
             </MDBCol>
           </MDBRow>
+          <form>
+            <MDBRow style={{ paddingTop: '2%' }}>
+              <MDBCol size="6">
+                <MDBRow style={{ paddingTop: '2%' }}>
+                  <MDBCol size="6">
+                    <MDBInput
+                      type="text"
+                      id="fullName"
+                      className="form-control"
+                      label="Full Name"
+                      value={this.state.fullName}
+                      onChange={this.handleChange}
+                    />
+                  </MDBCol>
+                  <MDBCol size="6">
+                    <MDBInput
+                      type="text"
+                      id="email"
+                      label="E-mail address"
+                      className="form-control"
+                      value={this.state.email}
+                      onChange={this.handleChange}
+                    />
+                  </MDBCol>
+                </MDBRow>
+                <MDBRow style={{ paddingTop: '2%' }}>
+                  <MDBCol size="6">
+                    <MDBInput
+                      type="text"
+                      id="phone"
+                      className="form-control"
+                      label="Phone Number"
+                      value={this.state.phone}
+                      onChange={this.handleChange}
+                    />
+                  </MDBCol>
+                  <MDBCol size="6">
+                    <MDBInput
+                      type="text"
+                      id="portfolioURL"
+                      className="form-control"
+                      label="Portfolio URL"
+                      value={this.state.portfolioURL}
+                      onChange={this.handleChange}
+                    />
+                  </MDBCol>
+                </MDBRow>
+                <MDBRow style={{ paddingTop: '2%' }}>
+                  <MDBCol size="6">
+                    <MDBInput
+                      type="text"
+                      id="addressStreet"
+                      className="form-control"
+                      label="Street Address"
+                      value={this.state.addressStreet}
+                      onChange={this.handleChange}
+                    />
+                  </MDBCol>
+                  <MDBCol size="6">
+                    <MDBInput
+                      type="text"
+                      id="addressCity"
+                      className="form-control"
+                      label="City, State and ZIP"
+                      value={this.state.addressCity}
+                      onChange={this.handleChange}
+                    />
+                  </MDBCol>
+                </MDBRow>
+              </MDBCol>
+              <MDBCol size="6">
+                <MDBInput
+                  type="textarea"
+                  id="summary"
+                  className="form-control"
+                  rows="9"
+                  label="Resume Summary"
+                  value={this.state.summary}
+                  onChange={this.handleChange}
+                />
+              </MDBCol>
+            </MDBRow>
+          </form>
+          <MDBRow style={{ paddingTop: '2%' }}>
+            <MDBCol size="12">
+              <div className="text-center mt-4">
+                <MDBBtn color="cyan" outline type="submit">
+                  Update!
+                </MDBBtn>
+              </div>
+            </MDBCol>
+          </MDBRow>
+
           <MDBRow>
             <MDBCol size="4">
               <EducationCard />
@@ -181,4 +188,59 @@ export default class Account extends Component {
       </>
     );
   }
+}
+
+{
+  /* <MDBRow style={{ paddingTop: '2%' }}>
+<MDBTable>
+  <MDBTableHead>
+    <tr>
+      <th>Skills</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+    </tr>
+  </MDBTableHead>
+  <MDBTableBody>
+    <tr>
+      <td />
+      <td>Javascript</td>
+      <td>Javascript</td>
+      <td>Javascript</td>
+    </tr>
+  </MDBTableBody>
+  <MDBTableHead>
+    <tr>
+      <th />
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+    </tr>
+  </MDBTableHead>
+  <MDBTableBody>
+    <tr>
+      <td />
+      <td>Javascript</td>
+      <td>Javascript</td>
+      <td>Javascript</td>
+    </tr>
+  </MDBTableBody>
+  <MDBTableHead>
+    <tr>
+      <th />
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+    </tr>
+  </MDBTableHead>
+  <MDBTableBody>
+    <tr>
+      <td />
+      <td>Javascript</td>
+      <td>Javascript</td>
+      <td>Javascript</td>
+    </tr>
+  </MDBTableBody>
+</MDBTable>
+</MDBRow> */
 }

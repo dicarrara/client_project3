@@ -8,7 +8,9 @@ import {
   MDBInput,
   MDBCard,
   MDBCardBody,
-  MDBCardTitle
+  MDBCardTitle,
+  MDBCardHeader,
+  MDBIcon
 } from 'mdbreact';
 import axios from 'axios';
 import './SignUp.css';
@@ -21,8 +23,7 @@ export default class SignUp extends Component {
       fullName: '',
       email: '',
       password: '',
-      confirmPassword: '',
-      redirect: false
+      confirmPassword: ''
     };
   }
 
@@ -72,7 +73,7 @@ export default class SignUp extends Component {
     let loginConfirmation = await this.loginAccount(serverURL, credentials);
 
     console.log(loginConfirmation);
-    this.props.auth(true);
+    this.props.func.authFunc(true);
   };
 
   render() {
@@ -85,7 +86,11 @@ export default class SignUp extends Component {
           <MDBCol md="6">
             <MDBCard style={{ width: '35vw', marginBotton: 'auto' }}>
               <MDBCardBody>
-                <MDBCardTitle>Sign Up</MDBCardTitle>
+                <MDBCardHeader className="form-header cyan rounded">
+                  <h3 className="my-3">
+                    <MDBIcon icon="lock" /> Signup:
+                  </h3>
+                </MDBCardHeader>
                 <form onSubmit={this.handleSubmit}>
                   {/* <p className="h3  md-6">Sign up</p> */}
                   <div className="grey-text">
@@ -154,7 +159,6 @@ export default class SignUp extends Component {
             </MDBCard>
           </MDBCol>
         </MDBRow>
-        {this.state.redirect ? <Redirect to="/" /> : <></>}
       </MDBContainer>
     );
   }

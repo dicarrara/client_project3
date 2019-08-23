@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 import './JobSearch.css';
 import CardForJob from '../../components/CardForJob/CardForJob';
 import axios from 'axios';
@@ -34,11 +34,7 @@ export default class JobSearch extends Component {
     }
 
     axios
-      .get(
-        `${serverURL}/api/${this.state.jobSearch}/${
-          this.state.jobLocation
-        }/true`
-      )
+      .get(`${serverURL}/api/${this.state.jobSearch}/${this.state.jobLocation}/true`)
       .then(response => {
         console.log(response.data.res);
         this.setState({ jobs: response.data.res });
@@ -61,36 +57,39 @@ export default class JobSearch extends Component {
               <h1 className="text-black">Search for a job</h1>
             </MDBCol>
           </MDBRow>
-          <MDBRow>
-            <MDBCol md="6">
+          <MDBRow style={{ paddingTop: '4%' }}>
+            <MDBCol md="5">
               <div className="active-pink-3 active-pink-4 mb-4">
-                <input
+                <MDBInput
+                  size="lg"
                   id="jobSearch"
                   onChange={this.handleChange}
                   value={this.state.jobSearch}
                   className="form-control"
                   type="text"
-                  placeholder="Job Title"
+                  label="Job Title"
                   aria-label="Search"
                 />
               </div>
             </MDBCol>
+            <MDBCol md="2" />
 
-            <MDBCol md="6">
+            <MDBCol md="5">
               <div className="active-pink-3 active-pink-4 mb-4">
-                <input
+                <MDBInput
+                  size="lg"
                   id="jobLocation"
                   onChange={this.handleChange}
                   value={this.state.jobLocation}
                   className="form-control"
                   type="text"
-                  placeholder="Location"
+                  label="Location"
                   aria-label="Location"
                 />
               </div>
             </MDBCol>
           </MDBRow>
-          <MDBRow>
+          <MDBRow style={{ paddingTop: '2%' }}>
             <MDBBtn
               gradient="aqua"
               rounded

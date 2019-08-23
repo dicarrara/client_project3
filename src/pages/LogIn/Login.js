@@ -8,7 +8,9 @@ import {
   MDBInput,
   MDBCard,
   MDBCardBody,
-  MDBCardTitle
+  MDBCardTitle,
+  MDBCardHeader,
+  MDBIcon
 } from 'mdbreact';
 import axios from 'axios';
 axios.defaults.withCredentials = true;
@@ -19,8 +21,7 @@ export default class Login extends Component {
 
     this.state = {
       email: '',
-      password: '',
-      redirect: false
+      password: ''
     };
   }
 
@@ -52,19 +53,13 @@ export default class Login extends Component {
       })
       .then(response => {
         console.log(response);
-        this.props.authenticate();
-        this.setState({
-          email: '',
-          password: '',
-          redirect: true
-        });
+        this.props.func.authFunc(true);
       })
       .catch(error => {
         console.log(error);
         this.setState({
           email: '',
-          password: '',
-          redirect: false
+          password: ''
         });
       });
   };
@@ -76,7 +71,12 @@ export default class Login extends Component {
           <MDBCol className="d-flex justify-content-center" md="6">
             <MDBCard style={{ width: '35vw', marginBotton: 'auto' }}>
               <MDBCardBody>
-                <MDBCardTitle>Log In</MDBCardTitle>
+                <MDBCardHeader className="form-header cyan rounded">
+                  <h3 className="my-3">
+                    <MDBIcon icon="lock" /> Login:
+                  </h3>
+                </MDBCardHeader>
+
                 <form onSubmit={this.handleSubmit}>
                   <div className="grey-text">
                     <MDBInput
@@ -121,7 +121,6 @@ export default class Login extends Component {
             </MDBCard>
           </MDBCol>
         </MDBRow>
-        {this.state.redirect ? <Redirect to="/" /> : <></>}
       </MDBContainer>
     );
   }
