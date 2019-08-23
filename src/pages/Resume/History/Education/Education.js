@@ -1,17 +1,48 @@
-import React from "react";
-import "./Education.css";
+import React from 'react';
+import './Education.css';
 
+export default class Education extends React.Component {
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props) {
+    super(props);
 
-
-function Education(props) {
-    return(
-      <div className="school">
-        <span className="school__name" contentEditable={true}>{props.schoolName}</span>
-        <span className="school__location" contentEditable={true}>{props.schoolLocation}</span>
-        <span className="school__degree" contentEditable={true}>{props.schoolDegree}</span>
-        <span className="school__cos" contentEditable={true}>{props.schoolCourse}</span>
-      </div>
-    )
+    this.state = {};
   }
 
-  export default Education
+  handleChange = event => {
+    this.props.updateStateArr(
+      'userSchool',
+      event.target.textContent,
+      event.target.getAttribute('index'),
+      event.target.getAttribute('value')
+    );
+  };
+
+  render() {
+    return (
+      <div className="school">
+        <span
+          className="school__name"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+        >
+          {this.props.schoolName}
+        </span>
+        <span
+          className="school__degree"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+        >
+          {this.props.schoolDegree}
+        </span>
+        <span
+          className="school__cos"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+        >
+          {this.props.schoolDate}
+        </span>
+      </div>
+    );
+  }
+}

@@ -1,10 +1,33 @@
-import React from "react";
-import "./Summary.css";
+import React from 'react';
+import './Summary.css';
 
-const Summary = props => (
-  <p className="summary" contentEditable={true}>
-    {props.summary}
-  </p>
-);
+export default class Summary extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default Summary;
+    // this.authFunc = this.authFunc.bind(this);
+
+    this.state = {};
+  }
+
+  handleChange = event => {
+    this.props.updateStateObj(
+      event.target.getAttribute('value'),
+      event.target.textContent
+    );
+  };
+
+  render() {
+    return (
+      <p
+        value="summary"
+        className="summary"
+        contentEditable={true}
+        suppressContentEditableWarning={true}
+        onBlur={this.handleChange}
+      >
+        {this.props.summary}
+      </p>
+    );
+  }
+}

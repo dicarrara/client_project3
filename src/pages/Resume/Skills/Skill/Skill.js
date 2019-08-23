@@ -2,12 +2,37 @@ import React from 'react';
 import './Skill.css';
 import { Rating } from 'semantic-ui-react';
 
-const Skill = props => (
-  <div className="skill">
-    <p className="skill__name" contentEditable={true}>
-      {props.item}
-    </p>
-  </div>
-);
+export default class Skill extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default Skill;
+    // this.authFunc = this.authFunc.bind(this);
+
+    this.state = {};
+  }
+
+  handleChange = event => {
+    this.props.updateStateArr(
+      event.target.getAttribute('value'),
+      event.target.textContent,
+      event.target.getAttribute('index')
+    );
+  };
+
+  render() {
+    return (
+      <div className="skill">
+        <p
+          index={this.props.index}
+          value="skills"
+          className="skill__name"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          onBlur={this.handleChange}
+        >
+          {this.props.skill}
+        </p>
+      </div>
+    );
+  }
+}

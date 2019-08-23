@@ -1,12 +1,44 @@
-import React from "react";
+import React from 'react';
 
-function ContactInfo(props) {
-    return (
-      <div className="contact" contentEditable={true}>
-        <p className="contact__email">{props.email}</p>
-        <p className="contact__phone">{props.phone}</p>
-      </div>
-    )
+export default class Contact extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // this.authFunc = this.authFunc.bind(this);
+
+    this.state = {};
   }
 
-  export default ContactInfo
+  handleChange = event => {
+    this.props.updateStateObj(
+      event.target.getAttribute('value'),
+      event.target.textContent
+    );
+  };
+
+  render() {
+    return (
+      <div className="contact">
+        <p
+          value="email"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          className="contact__email"
+          onBlur={this.handleChange}
+          style={{ margin: 0, padding: 0 }}
+        >
+          {this.props.email}
+        </p>
+        <p
+          value="phone"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          className="contact__phone"
+          onBlur={this.handleChange}
+        >
+          {this.props.phone}
+        </p>
+      </div>
+    );
+  }
+}

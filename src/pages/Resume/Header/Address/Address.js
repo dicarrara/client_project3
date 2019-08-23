@@ -1,12 +1,45 @@
-import React from "react";
-import "./Address.css";
+import React from 'react';
+import './Address.css';
 
-const Address = props =>    
-     <div className="address" contentEditable={true}>
-      <span className="address__street">{props.street}</span>
-      <span className="address__city">{props.city}</span>
-    </div> 
-   
- 
+export default class Address extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default Address
+    // this.authFunc = this.authFunc.bind(this);
+
+    this.state = {};
+  }
+
+  handleChange = event => {
+    this.props.updateStateObj(
+      event.target.getAttribute('value'),
+      event.target.textContent
+    );
+  };
+
+  render() {
+    return (
+      <div className="address">
+        <p
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          value="addressStreet"
+          className="address__street"
+          onBlur={this.handleChange}
+          style={{ margin: 0, padding: 0 }}
+        >
+          {this.props.street}
+        </p>
+        <p
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          value="addressCity"
+          className="address__city"
+          onBlur={this.handleChange}
+        >
+          {this.props.city}
+        </p>
+      </div>
+    );
+  }
+}

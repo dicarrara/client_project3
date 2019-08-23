@@ -1,26 +1,12 @@
 .skill__name {
   display: inline-block;
-  
-  font-weight: 600;
-  color: #95989A;
-  font-size: 13px;
-  -webkit-margin-before: 0
 
+  font-weight: 600;
+  color: #95989a;
+  font-size: 15px;
+  -webkit-margin-before: 0;
 }
 
 .skill__rating {
   margin-left: 5px;
 }
-
-/* div.ui.star.skill__rating>.active.icon
- {
-  color: #D75E27 !important
- }  
-  
-div.ui.star.skill__rating>.selected.icon,
-div.ui.star.skill__rating>.active.selected.icon {
-  color: #D75E27 !important;
-  opacity: 0.75 !important 
-  
-} */
-  
