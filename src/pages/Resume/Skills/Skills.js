@@ -20,51 +20,51 @@ export default class Skills extends React.Component {
           <div className="ratings__skills">
             <Skill
               skill={this.props.skills[0]}
-              updateStateArr={this.props.updateStateArr}
+              updateState={this.props.updateState}
               index={0}
             />
             <Skill
               skill={this.props.skills[1]}
-              updateStateArr={this.props.updateStateArr}
+              updateState={this.props.updateState}
               index={1}
             />
             <Skill
               skill={this.props.skills[2]}
-              updateStateArr={this.props.updateStateArr}
+              updateState={this.props.updateState}
               index={2}
             />
           </div>
           <div className="ratings__skills">
             <Skill
               skill={this.props.skills[3]}
-              updateStateArr={this.props.updateStateArr}
+              updateState={this.props.updateState}
               index={3}
             />
             <Skill
               skill={this.props.skills[4]}
-              updateStateArr={this.props.updateStateArr}
+              updateState={this.props.updateState}
               index={4}
             />
             <Skill
               skill={this.props.skills[5]}
-              updateStateArr={this.props.updateStateArr}
+              updateState={this.props.updateState}
               index={5}
             />
           </div>
           <div className="ratings__tools">
             <Skill
               skill={this.props.skills[6]}
-              updateStateArr={this.props.updateStateArr}
+              updateState={this.props.updateState}
               index={6}
             />
             <Skill
               skill={this.props.skills[7]}
-              updateStateArr={this.props.updateStateArr}
+              updateState={this.props.updateState}
               index={7}
             />
             <Skill
               skill={this.props.skills[8]}
-              updateStateArr={this.props.updateStateArr}
+              updateState={this.props.updateState}
               index={8}
             />
           </div>

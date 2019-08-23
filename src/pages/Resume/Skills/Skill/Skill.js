@@ -12,10 +12,12 @@ export default class Skill extends React.Component {
   }
 
   handleChange = event => {
-    this.props.updateStateArr(
+    this.props.updateState(
       event.target.getAttribute('value'),
       event.target.textContent,
-      event.target.getAttribute('index')
+      event.target.getAttribute('index'),
+      null,
+      null
     );
   };
 

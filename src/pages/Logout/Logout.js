@@ -17,7 +17,7 @@ export default class Logout extends Component {
     }
     axios.get(`${serverURL}/logout`);
     setTimeout(() => {
-      this.props.func.authFunc(false);
+      this.props.updateState(false, null, null, null, 'authed');
     }, 1000 * 3);
   }
 

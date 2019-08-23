@@ -11,9 +11,12 @@ export default class Summary extends React.Component {
   }
 
   handleChange = event => {
-    this.props.updateStateObj(
+    this.props.updateState(
       event.target.getAttribute('value'),
-      event.target.textContent
+      event.target.textContent,
+      null,
+      null,
+      null
     );
   };
 

@@ -32,32 +32,26 @@ export default class Resume extends React.Component {
           fullName={this.props.user.fullName}
           email={this.props.user.email}
           phone={this.props.user.phone}
-          updateStateObj={this.props.func.updateStateResumeObj}
+          updateState={this.props.updateState}
         />
-        <Summary
-          summary={this.props.user.summary}
-          updateStateObj={this.props.func.updateStateResumeObj}
-        />
-        <Skills
-          skills={this.props.user.skills}
-          updateStateArr={this.props.func.updateStateResumeArr}
-        />
+        <Summary summary={this.props.user.summary} updateState={this.props.updateState} />
+        <Skills skills={this.props.user.skills} updateState={this.props.updateState} />
         <div className="qualifications" style={{ marginTop: '20px' }}>
           <Experience
             userWork={this.props.user.userWork}
-            updateStateArr={this.props.func.updateStateResumeArr}
+            updateState={this.props.updateState}
           />
           <History
             userSchool={this.props.user.userSchool}
             userProjects={this.props.user.userProjects}
-            updateStateArr={this.props.func.updateStateResumeArr}
+            updateState={this.props.updateState}
           />
         </div>
         <FooterResume
           portfolioUrl={this.props.user.portfolioURL}
           phoneNumber={this.props.user.phone}
           email={this.props.user.email}
-          updateStateObj={this.props.func.updateStateResumeObj}
+          updateState={this.props.updateState}
         />
       </div>
     );

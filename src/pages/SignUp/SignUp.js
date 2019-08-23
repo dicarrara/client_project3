@@ -73,7 +73,12 @@ export default class SignUp extends Component {
     let loginConfirmation = await this.loginAccount(serverURL, credentials);
 
     console.log(loginConfirmation);
-    this.props.func.authFunc(true);
+
+    // Updates user state
+    this.props.updateState(loginConfirmation, null, null, null, 'user');
+
+    // Authorizes page
+    this.props.updateState(true, null, null, null, 'authed');
   };
 
   render() {

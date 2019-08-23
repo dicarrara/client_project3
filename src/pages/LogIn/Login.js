@@ -53,7 +53,7 @@ export default class Login extends Component {
       })
       .then(response => {
         console.log(response);
-        this.props.func.authFunc(true);
+        this.props.updateState(true, null, null, null, 'authed');
       })
       .catch(error => {
         console.log(error);

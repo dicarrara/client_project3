@@ -21,10 +21,8 @@ export default class History extends React.Component {
             index={index}
             schoolName={education.schoolName}
             schoolDegree={education.schoolDegree}
-            schoolDate={`${education.schoolYearFrom} - ${
-              education.schoolYearTo
-            }`}
-            updateStateArr={this.props.updateStateArr}
+            schoolDate={`${education.schoolYearFrom} - ${education.schoolYearTo}`}
+            updateState={this.props.updateState}
           />
         ))}
 
@@ -36,7 +34,7 @@ export default class History extends React.Component {
             projectName={project.projectName}
             projectURL={project.projectURL}
             projectDesc={project.projectDesc}
-            updateStateArr={this.props.updateStateArr}
+            updateState={this.props.updateState}
           />
         ))}
       </div>

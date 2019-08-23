@@ -16,13 +16,15 @@ import Account from './pages/Account/Account';
 import Resume from './pages/Resume/Resume';
 import Logout from './pages/Logout/Logout';
 
-const PrivateRouteOut = ({ component: Component, user, func, authed, ...props }) => {
+// React Componenet for being logged out
+
+const PrivateRouteOut = ({ component: Component, user, updateState, authed, ...props }) => {
   return (
     <Route
       {...props}
       render={props =>
         authed === true ? (
-          <Component user={user} func={func} {...props} />
+          <Component user={user} updateState={updateState} {...props} />
         ) : (
           <Redirect to={{ pathname: '/', state: { from: props.location } }} />
         )
@@ -31,13 +33,15 @@ const PrivateRouteOut = ({ component: Component, user, func, authed, ...props })
   );
 };
 
-const PrivateRouteIn = ({ component: Component, user, func, authed, ...props }) => {
+// React Componenet for being logged in
+
+const PrivateRouteIn = ({ component: Component, user, updateState, authed, ...props }) => {
   return (
     <Route
       {...props}
       render={props =>
         authed === true ? (
-          <Component user={user} func={func} {...props} />
+          <Component user={user} updateState={updateState} {...props} />
         ) : (
           <Redirect to={{ pathname: '/home', state: { from: props.location } }} />
         )
@@ -45,6 +49,8 @@ const PrivateRouteIn = ({ component: Component, user, func, authed, ...props }) 
     />
   );
 };
+
+// Checks if local or production
 
 let serverURL;
 if (window.location.hostname === 'localhost') {
@@ -57,14 +63,12 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
-    this.func.authFunc = this.func.authFunc.bind(this);
-    this.func.updateStateResumeObj = this.func.updateStateResumeObj.bind(this);
-    this.func.updateStateResumeArr = this.func.updateStateResumeArr.bind(this);
+    this.updateState = this.updateState.bind(this);
 
     this.state = {
       authed: false,
       user: {
-        id: 123,
+        id: null,
         fullName: 'John Doe',
         email: 'test@yahoo.com',
         addressStreet: 'Somewhere Lane',
@@ -139,55 +143,56 @@ export default class App extends Component {
     };
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
     await axios
       .get(`${serverURL}/api/checkauthentication`)
       .then(response => {
         console.log(response);
-        this.setState({
-          authed: true
-        });
+        this.updateState(response.data.user, null, null, null, 'user');
+        this.updateState(true, null, null, null, 'authed');
       })
       .catch(error => {
-        this.setState({ authed: false });
+        this.updateState(false, null, null, null, 'authed');
       });
     console.log(this.state.authed);
   }
 
-  func = {
-    updateStateResumeObj: (valueOne, change, valueTwo) => {
-      if (valueTwo) {
-        let newChange = update(this.state, {
-          user: { [valueTwo]: { valueOne: { $set: change } } }
-        });
-        this.setState(newChange);
-      } else {
-        let newChange = update(this.state, {
-          user: { [valueOne]: { $set: change } }
-        });
-        this.setState(newChange);
-      }
-    },
+  // ****************  Functions to pass down to components ***************
 
-    updateStateResumeArr: (valueOne, change, index, valueTwo) => {
-      if (valueTwo) {
-        let newChange = update(this.state, {
-          user: { [valueOne]: { [index]: { [valueTwo]: { $set: change } } } }
-        });
-        this.setState(newChange);
-      } else {
-        let newChange = update(this.state, {
-          user: { [valueOne]: { [index]: { $set: change } } }
-        });
-        this.setState(newChange);
-      }
-    },
+  // Function to update the state user from children components
+  updateState = (valueOne, change, index, valueTwo, root) => {
+    // Checks if it needs to update something other than user
 
-    authFunc: change => {
-      this.setState({ authed: change });
+    if (root) {
+      let newChange = update(this.state, {
+        [root]: { $set: valueOne }
+      });
+      this.setState(newChange);
+    } else if (valueTwo) {
+      // Checks for two properties and an array value
+
+      let newChange = update(this.state, {
+        user: { [valueOne]: { [index]: { [valueTwo]: { $set: change } } } }
+      });
+      this.setState(newChange);
+    } else if (index) {
+      // Checks for one property and an array value
+
+      let newChange = update(this.state, {
+        user: { [valueOne]: { [index]: { $set: change } } }
+      });
+      this.setState(newChange);
+    } else {
+      // Checks for a property value
+
+      let newChange = update(this.state, {
+        user: { [valueOne]: { [index]: { $set: change } } }
+      });
+      this.setState(newChange);
     }
   };
 
+  // ******************** Render Function ********************
   render() {
     return (
       <Router>
@@ -201,7 +206,7 @@ export default class App extends Component {
             component={Login}
             authed={!this.state.authed}
             user={this.state.user}
-            func={this.func}
+            updateState={this.updateState}
           />
           <PrivateRouteOut
             exact
@@ -209,7 +214,7 @@ export default class App extends Component {
             component={SignUp}
             authed={!this.state.authed}
             user={this.state.user}
-            func={this.func}
+            updateState={this.updateState}
           />
 
           {/* Logged-in routes */}
@@ -219,7 +224,7 @@ export default class App extends Component {
             component={JobSearch}
             authed={this.state.authed}
             user={this.state.user}
-            func={this.func}
+            updateState={this.updateState}
           />
           <PrivateRouteIn
             exact
@@ -227,7 +232,7 @@ export default class App extends Component {
             component={Resume}
             authed={this.state.authed}
             user={this.state.user}
-            func={this.func}
+            updateState={this.updateState}
           />
           <PrivateRouteIn
             exact
@@ -235,7 +240,7 @@ export default class App extends Component {
             component={Account}
             authed={this.state.authed}
             user={this.state.user}
-            func={this.func}
+            updateState={this.updateState}
           />
           <PrivateRouteOut
             exact
@@ -243,7 +248,7 @@ export default class App extends Component {
             component={Logout}
             authed={this.state.authed}
             user={this.state.user}
-            func={this.func}
+            updateState={this.updateState}
           />
         </Switch>
       </Router>
