@@ -7,6 +7,7 @@ import Experience from './Experience/Experience';
 import FooterResume from './FooterResume/FooterResume';
 import './Resume.css';
 import axios from 'axios';
+import { object } from 'prop-types';
 
 let serverURL;
 if (window.location.hostname === 'localhost') {
@@ -91,6 +92,7 @@ class Resume extends React.Component {
   render() {
     return (
       <div id="resume">
+
         <Header
           street={this.state.user.addressStreet}
           city={this.state.user.addressCity}
