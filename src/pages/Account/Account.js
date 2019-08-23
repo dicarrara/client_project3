@@ -5,7 +5,6 @@ import ExperienceCard from '../../components/ExperienceCard/ExperienceCard';
 import SkillsCard from '../../components/SkillsCard/SkillsCard';
 import EducationCard from '../../components/EducationCard/EducationCard';
 import './Account.css';
-
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
