@@ -1,15 +1,13 @@
-import React from "react";
-import Skill from "../Skill/Skill";
-import "./Skills.css";
+import React from 'react';
+import Skill from './Skill/Skill';
+import './Skills.css';
 
 class Skills extends React.Component {
   // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
-    
-    this.state ={
 
-    }
+    this.state = {};
   }
 
   render() {

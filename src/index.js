@@ -6,7 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import App from './App';
-import Footer from '../src/components/Footer/Footer';
+import Footer from './Footer/Footer';
 
 ReactDOM.render(
   [<App key="1" />, <Footer key="2" />],
