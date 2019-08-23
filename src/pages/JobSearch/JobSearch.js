@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 import './JobSearch.css';
 import CardForJob from '../../components/CardForJob/CardForJob';
 import axios from 'axios';
-
 
 export default class JobSearch extends Component {
   // this.authChange = this.authChange.bind(this);
@@ -56,7 +55,7 @@ export default class JobSearch extends Component {
   render() {
     return (
       <>
-        <MDBContainer>
+        <MDBContainer style={{ marginBottom: '35px' }}>
           <MDBRow>
             <MDBCol size="6">
               <h1 className="text-black">Search for a job</h1>
@@ -105,7 +104,15 @@ export default class JobSearch extends Component {
           </MDBRow>
           <MDBRow>
             {this.state.jobs.map(job => {
-              return <CardForJob key={job.id} title={job.title} />;
+              return (
+                <CardForJob
+                  key={job.id}
+                  title={job.title}
+                  description={job.description}
+                  company={job.company}
+                  url={job.url}
+                />
+              );
             })}
           </MDBRow>
         </MDBContainer>

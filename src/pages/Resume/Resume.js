@@ -41,49 +41,64 @@
 
 // export default Resume;
 
-import React from "react";
-import Header from "../../components/Header/Header";
-import History from "../../components/History/History";
-import Summary from "../../components/Summary/Summary";
-import Skills from "../../components/Skills/Skills";
-import Experience from "../../components/Experience/Experience";
-import FooterResume from "../../components/FooterResume/FooterResume";
-import "./Resume.css";
-import axios from "axios";
+import React from 'react';
+import Header from '../../components/Header/Header';
+import History from '../../components/History/History';
+import Summary from '../../components/Summary/Summary';
+import Skills from '../../components/Skills/Skills';
+import Experience from '../../components/Experience/Experience';
+import FooterResume from '../../components/FooterResume/FooterResume';
+import './Resume.css';
+import axios from 'axios';
+
+let serverURL;
+if (window.location.hostname === 'localhost') {
+  serverURL = 'http://localhost:8080';
+} else {
+  serverURL = 'https://server-project3.herokuapp.com';
+}
 
 class Resume extends React.Component {
   state = {
-    street: "",
-    city: "",
-    fullName: "",
-    email: "",
-    phone: "",
-    summary:"",
-
+    street: '',
+    city: '',
+    fullName: '',
+    email: '',
+    phone: '',
+    summary: ''
   };
-// get the data from our DB
-  componentDidMount() {
-    axios.get()
-      .then(res => this.setState({ street: res.street, city: res.city, fullName: res.fullName, email: res.email, phone: res.phone, summary: res.summary}))
-      .catch(err => console.log(err));
+  // get the data from our DB
+  async componentDidMount() {
+    await axios.get(`${serverURL}/api/checkauthentication`).then(response => {
+      console.log(response);
+      this.setState({
+        user: {
+          fullName: response.data.res.fullName,
+          id: response.data.res._id,
+          email: response.data.res.email
+        }
+      });
+    });
+    console.log(this.state.authed);
   }
 
   //function to take value of what entered into the proper area
   handleInputChange = event => {
-    this.setState({ street: event.target.value, city: event.target.value, fullName: event.target.value, email: event.target.value, phone: event.target.value, summary: event.target.value});
+    this.setState({
+      street: event.target.value,
+      city: event.target.value,
+      fullName: event.target.value,
+      email: event.target.value,
+      phone: event.target.value,
+      summary: event.target.value
+    });
   };
 
   render() {
     return (
       <div id="resume">
-        <Header
-        street 
-        city
-        fullName
-        email
-        phone />
-        <Summary 
-        summary="Cortado Steve Jobs parallax parallax waterfall is so 2000 and late thought leader iterate pair programming physical computing. Thinker-maker-doer thinker-maker-doer earned media integrate grok latte experiential responsive innovate unicorn." />
+        <Header street city fullName email phone />
+        <Summary summary="Cortado Steve Jobs parallax parallax waterfall is so 2000 and late thought leader iterate pair programming physical computing. Thinker-maker-doer thinker-maker-doer earned media integrate grok latte experiential responsive innovate unicorn." />
         <Skills />
         <div className="qualifications">
           <Experience />
