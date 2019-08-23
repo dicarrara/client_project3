@@ -8,7 +8,7 @@ import {
 
 const SkillsCard = props => {
   return (
-    <MDBCard style={{ width: "30rem" }}>
+    <MDBCard style={{ width: "22rem" }}>
       <MDBCardBody>
         <MDBCardTitle>Skills</MDBCardTitle>
         <ModalPage

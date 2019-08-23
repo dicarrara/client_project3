@@ -50,6 +50,7 @@ import Experience from '../../components/Experience/Experience';
 import FooterResume from '../../components/FooterResume/FooterResume';
 import './Resume.css';
 import axios from 'axios';
+import { object } from 'prop-types';
 
 let serverURL;
 if (window.location.hostname === 'localhost') {
@@ -97,7 +98,7 @@ class Resume extends React.Component {
   render() {
     return (
       <div id="resume">
-        <Header street city fullName email phone />
+        <Header street={object.street} city fullName email phone />
         <Summary summary="Cortado Steve Jobs parallax parallax waterfall is so 2000 and late thought leader iterate pair programming physical computing. Thinker-maker-doer thinker-maker-doer earned media integrate grok latte experiential responsive innovate unicorn." />
         <Skills />
         <div className="qualifications">
