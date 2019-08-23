@@ -15,6 +15,7 @@ export default class History extends React.Component {
     return (
       <div className="history">
         <h2 className="heading">EDUCATION</h2>
+
         {this.props.userSchool.map((education, index) => (
           <Education
             key={index}

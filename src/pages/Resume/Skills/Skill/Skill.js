@@ -13,9 +13,9 @@ export default class Skill extends React.Component {
 
   handleChange = event => {
     this.props.updateState(
-      event.target.getAttribute('value'),
+      'skills',
       event.target.textContent,
-      event.target.getAttribute('index'),
+      event.target.getAttribute('value'),
       null,
       null
     );
@@ -25,8 +25,7 @@ export default class Skill extends React.Component {
     return (
       <div className="skill">
         <p
-          index={this.props.index}
-          value="skills"
+          value={this.props.value}
           className="skill__name"
           contentEditable={true}
           suppressContentEditableWarning={true}

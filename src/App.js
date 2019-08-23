@@ -35,7 +35,13 @@ const PrivateRouteOut = ({ component: Component, user, updateState, authed, ...p
 
 // React Componenet for being logged in
 
-const PrivateRouteIn = ({ component: Component, user, updateState, authed, ...props }) => {
+const PrivateRouteIn = ({
+  component: Component,
+  user: user,
+  updateState: updateState,
+  authed,
+  ...props
+}) => {
   return (
     <Route
       {...props}
@@ -77,17 +83,17 @@ export default class App extends Component {
         portfolioURL: 'www.IEATWEIRDTHINGS.ninja',
         summary:
           'I am a terrible person who does not like to eat bugs, but I do enjoy chocolate sometimes. If you hire me, I might come to work but I make no promises. Take a look at my SKILLZ and consider hiring me',
-        skills: [
-          'Node.js',
-          'React.js',
-          'MongoDB',
-          'Firebase',
-          'MySQL',
-          'Express',
-          'Eating',
-          'Sleeping',
-          'Github'
-        ],
+        skills: {
+          skill1: 'Node.js',
+          skill2: 'React.js',
+          skill3: 'MongoDB',
+          skill4: 'Firebase',
+          skill5: 'MySQL',
+          skill6: 'Express',
+          skill7: 'Eating',
+          skill8: 'Sleeping',
+          skill9: 'Github'
+        },
         userSchool: [
           {
             schoolName: 'Harvard',
@@ -143,18 +149,72 @@ export default class App extends Component {
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     await axios
       .get(`${serverURL}/api/checkauthentication`)
       .then(response => {
-        console.log(response);
-        this.updateState(response.data.user, null, null, null, 'user');
+        let user = response.data.res;
+        console.log('User: ');
+        console.log(user);
+        this.updateState(user, null, null, null, 'user');
+
+        if (typeof user.userWork === 'undefined' || user.userWork.length === 0) {
+          this.updateState(
+            'userWork',
+            [
+              {
+                jobTitle: 'Full Stack Developer',
+                jobCompany: 'Google',
+                jobDate: '2017 - 2019',
+                jobSummary:
+                  'Handled full stack web development for Google. Surprisingly, they are a simple startup company that utilizes the MERN stack. Leaving for better opportunities!'
+              }
+            ],
+            null,
+            null,
+            null
+          );
+        }
+        if (typeof user.userProjects === 'undefined' || user.userProjects.length === 0) {
+          this.updateState(
+            'userProjects',
+            [
+              {
+                projectName: 'elgooG',
+                projectURL: 'moc.elgooG.www',
+                projectDesc:
+                  'A destination for everything! The internet is at your fingertips with my AMAZING project'
+              }
+            ],
+            null,
+            null,
+            null
+          );
+        }
+        if (typeof user.userSchool === 'undefined' || user.userSchool.length === 0) {
+          this.updateState(
+            'userSchool',
+            [
+              {
+                schoolName: 'MIT',
+                schoolDegree: 'B.S.',
+                schoolYearFrom: 2011,
+                schoolYearTo: 2015
+              }
+            ],
+            null,
+            null,
+            null
+          );
+        }
+
         this.updateState(true, null, null, null, 'authed');
       })
       .catch(error => {
+        console.log(error);
         this.updateState(false, null, null, null, 'authed');
       });
-    console.log(this.state.authed);
+    console.log(`Authed?: ${this.state.authed}`);
   }
 
   // ****************  Functions to pass down to components ***************
@@ -176,7 +236,7 @@ export default class App extends Component {
       });
       this.setState(newChange);
     } else if (index) {
-      // Checks for one property and an array value
+      // Checks for two property values
 
       let newChange = update(this.state, {
         user: { [valueOne]: { [index]: { $set: change } } }
@@ -186,7 +246,7 @@ export default class App extends Component {
       // Checks for a property value
 
       let newChange = update(this.state, {
-        user: { [valueOne]: { [index]: { $set: change } } }
+        user: { [valueOne]: { $set: change } }
       });
       this.setState(newChange);
     }
