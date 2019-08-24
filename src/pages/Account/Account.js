@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   MDBContainer,
   MDBRow,
@@ -8,23 +8,23 @@ import {
   MDBBtn,
   MDBIcon,
   MDBInput,
-  MDBTable,
-  MDBTableHead,
-  MDBTableBody
-} from "mdbreact";
-import ExperienceCard from "../../components/ExperienceCard/ExperienceCard";
-import SkillsCard from "../../components/SkillsCard/SkillsCard";
-import EducationCard from "../../components/EducationCard/EducationCard";
-import "./Account.css";
+  MDBListGroupItem,
+  MDBListGroup
+} from 'mdbreact';
+import AccountCard from '../../components/AccountCard/AccountCard';
+import AccountList from './AccountList/AccountList';
+import './Account.css';
 
-import axios from "axios";
+import update from 'immutability-helper';
+
+import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 let serverURL;
-if (window.location.hostname === "localhost") {
-  serverURL = "http://localhost:8080";
+if (window.location.hostname === 'localhost') {
+  serverURL = 'http://localhost:8080';
 } else {
-  serverURL = "https://server-project3.herokuapp.com";
+  serverURL = 'https://server-project3.herokuapp.com';
 }
 
 export default class Account extends Component {
@@ -57,9 +57,7 @@ export default class Account extends Component {
         addressStreet: this.state.addressStreet,
         addressCity: this.state.addressCity,
         summary: this.state.summary,
-        education: this.props.education,
-        experience: this.props.experience,
-        skills: this.props.skills
+        skills: this.state.skills
       });
     }
   };
@@ -78,19 +76,28 @@ export default class Account extends Component {
     });
   };
 
+  handleChangeSkill = event => {
+    let newChange = update(this.state, {
+      skills: {
+        [event.target.id]: { $set: event.target.value }
+      }
+    });
+    this.setState(newChange);
+  };
+
   render() {
     return (
       <>
-        <MDBContainer>
-          <MDBRow style={{ paddingTop: "8%" }}>
+        <MDBContainer style={{ marginBottom: '40px' }}>
+          <MDBRow style={{ paddingTop: '8%' }}>
             <MDBCol size="12">
               <h1>Account Info: </h1>
             </MDBCol>
           </MDBRow>
           <form>
-            <MDBRow style={{ paddingTop: "2%" }}>
+            <MDBRow style={{ paddingTop: '2%' }}>
               <MDBCol size="6">
-                <MDBRow style={{ paddingTop: "2%" }}>
+                <MDBRow style={{ paddingTop: '2%' }}>
                   <MDBCol size="6">
                     <MDBInput
                       type="text"
@@ -112,7 +119,7 @@ export default class Account extends Component {
                     />
                   </MDBCol>
                 </MDBRow>
-                <MDBRow style={{ paddingTop: "2%" }}>
+                <MDBRow style={{ paddingTop: '2%' }}>
                   <MDBCol size="6">
                     <MDBInput
                       type="text"
@@ -134,7 +141,7 @@ export default class Account extends Component {
                     />
                   </MDBCol>
                 </MDBRow>
-                <MDBRow style={{ paddingTop: "2%" }}>
+                <MDBRow style={{ paddingTop: '2%' }}>
                   <MDBCol size="6">
                     <MDBInput
                       type="text"
@@ -156,30 +163,6 @@ export default class Account extends Component {
                     />
                   </MDBCol>
                 </MDBRow>
-                <MDBRow style={{ paddingTop: "2%" }}>
-                  <MDBCol size="12">
-                    <MDBInput
-                      type="text"
-                      id="education"
-                      className="form-control"
-                      label="Education"
-                      value={this.state.education}
-                      onChange={this.handleChange}
-                    />
-                  </MDBCol>
-                </MDBRow>
-                <MDBRow style={{ paddingTop: "2%" }}>
-                  <MDBCol size="12">
-                    <MDBInput
-                      type="text"
-                      id="experience"
-                      className="form-control"
-                      label="Experience"
-                      value={this.state.experience}
-                      onChange={this.handleChange}
-                    />
-                  </MDBCol>
-                </MDBRow>
               </MDBCol>
               <MDBCol size="6">
                 <MDBInput
@@ -191,29 +174,33 @@ export default class Account extends Component {
                   value={this.state.summary}
                   onChange={this.handleChange}
                 />
-                <MDBInput
-                  type="textarea"
-                  id="skills"
-                  className="form-control"
-                  rows="4"
-                  label="Skills"
-                  value={this.state.skills}
-                  onChange={this.handleChange}
-                />
-
               </MDBCol>
-           
             </MDBRow>
           </form>
-          <MDBRow style={{ paddingTop: "2%" }}>
+
+          <MDBRow>
+            <MDBCol size="1" />
+            {Object.keys(this.props.user.skills).map((skillKey, i) =>
+              skillKey !== '_id' ? (
+                <MDBCol size="1" key={i}>
+                  <MDBInput
+                    type="text"
+                    id={skillKey}
+                    className="form-control"
+                    label={skillKey}
+                    value={this.state.skills[skillKey]}
+                    onChange={this.handleChangeSkill}
+                  />
+                </MDBCol>
+              ) : (
+                ''
+              )
+            )}
+          </MDBRow>
+          <MDBRow style={{ paddingTop: '2%' }}>
             <MDBCol size="12">
               <div className="text-center mt-4">
-                <MDBBtn
-                  color="cyan"
-                  outline
-                  type="submit"
-                  onClick={this.submitAccountDetails}
-                >
+                <MDBBtn color="cyan" outline type="submit" onClick={this.submitAccountDetails}>
                   Update!
                 </MDBBtn>
               </div>
@@ -222,72 +209,87 @@ export default class Account extends Component {
 
           <MDBRow>
             <MDBCol size="4">
-              <EducationCard />
+              <h2>Education: </h2>
+              {this.props.user.userSchool.map((education, i) => (
+                <AccountList
+                  info={education}
+                  id={this.props.user._id}
+                  identify={'userSchool'}
+                  key={i}
+                  stateGrab={this.props.stateGrab}
+                />
+              ))}
             </MDBCol>
             <MDBCol size="4">
-              <ExperienceCard />
+              <h2>Experience: </h2>
+              {this.props.user.userWork.map((job, i) => (
+                <AccountList
+                  info={job}
+                  id={this.props.user._id}
+                  identify={'userWork'}
+                  key={i}
+                  stateGrab={this.props.stateGrab}
+                />
+              ))}
             </MDBCol>
             <MDBCol size="4">
-              <SkillsCard />
+              <h2>Projects: </h2>
+              {this.props.user.userProjects.map((project, i) => (
+                <AccountList
+                  info={project}
+                  id={this.props.user._id}
+                  identify={'userProjects'}
+                  key={i}
+                  stateGrab={this.props.stateGrab}
+                />
+              ))}
+            </MDBCol>
+          </MDBRow>
+          <MDBRow style={{ paddingTop: '2%' }}>
+            <MDBCol size="4">
+              <AccountCard
+                title={'Education'}
+                words={[
+                  { schoolName: 'School Name' },
+                  { schoolDegree: 'Degree' },
+                  { schoolYearFrom: 'Year Start' },
+                  { schoolYearTo: 'Year Ended' }
+                ]}
+                identity={'userSchool'}
+                stateGrab={this.props.stateGrab}
+                userID={this.props.user._id}
+              />
+            </MDBCol>
+            <MDBCol size="4">
+              <AccountCard
+                title={'Experience'}
+                words={[
+                  { jobTitle: 'Job Title' },
+                  { jobCompany: 'Company' },
+                  { jobDate: 'Date Range' },
+                  { jobSummary: 'Summary of Duties' }
+                ]}
+                identity={'userWork'}
+                stateGrab={this.props.stateGrab}
+                userID={this.props.user._id}
+              />
+            </MDBCol>
+            <MDBCol size="4">
+              <AccountCard
+                title={'Projects'}
+                words={[
+                  { projectName: 'Project Name' },
+                  { projectURL: 'URL to project' },
+                  { projectDesc: 'Description of Project' }
+                ]}
+                identity={'userProjects'}
+                stateGrab={this.props.stateGrab}
+                userID={this.props.user._id}
+              />
             </MDBCol>
           </MDBRow>
         </MDBContainer>
       </>
     );
   }
-}
-
-{
-  /* <MDBRow style={{ paddingTop: '2%' }}>
-<MDBTable>
-  <MDBTableHead>
-    <tr>
-      <th>Skills</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-    </tr>
-  </MDBTableHead>
-  <MDBTableBody>
-    <tr>
-      <td />
-      <td>Javascript</td>
-      <td>Javascript</td>
-      <td>Javascript</td>
-    </tr>
-  </MDBTableBody>
-  <MDBTableHead>
-    <tr>
-      <th />
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-    </tr>
-  </MDBTableHead>
-  <MDBTableBody>
-    <tr>
-      <td />
-      <td>Javascript</td>
-      <td>Javascript</td>
-      <td>Javascript</td>
-    </tr>
-  </MDBTableBody>
-  <MDBTableHead>
-    <tr>
-      <th />
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-    </tr>
-  </MDBTableHead>
-  <MDBTableBody>
-    <tr>
-      <td />
-      <td>Javascript</td>
-      <td>Javascript</td>
-      <td>Javascript</td>
-    </tr>
-  </MDBTableBody>
-</MDBTable>
-</MDBRow> */
 }
