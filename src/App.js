@@ -39,6 +39,7 @@ const PrivateRouteIn = ({
   component: Component,
   user: user,
   updateState: updateState,
+  stateGrab,
   authed,
   ...props
 }) => {
@@ -47,7 +48,7 @@ const PrivateRouteIn = ({
       {...props}
       render={props =>
         authed === true ? (
-          <Component user={user} updateState={updateState} {...props} />
+          <Component stateGrab={stateGrab} user={user} updateState={updateState} {...props} />
         ) : (
           <Redirect to={{ pathname: '/home', state: { from: props.location } }} />
         )
@@ -70,19 +71,19 @@ export default class App extends Component {
     super(props);
 
     this.updateState = this.updateState.bind(this);
+    this.stateGrab = this.stateGrab.bind(this);
 
     this.state = {
       authed: false,
       user: {
-        id: null,
+        _id: null,
         fullName: 'John Doe',
         email: 'test@yahoo.com',
         addressStreet: 'Somewhere Lane',
         addressCity: 'Aurora, CO 80014',
         phone: '(123) 456-7890',
         portfolioURL: 'www.IEATWEIRDTHINGS.ninja',
-        summary:
-          'I am a terrible person who does not like to eat bugs, but I do enjoy chocolate sometimes. If you hire me, I might come to work but I make no promises. Take a look at my SKILLZ and consider hiring me',
+        summary: 'This is a little about me!',
         skills: {
           skill1: 'Node.js',
           skill2: 'React.js',
@@ -149,11 +150,16 @@ export default class App extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.stateGrab();
+  }
+
+  stateGrab = async () => {
     await axios
       .get(`${serverURL}/api/checkauthentication`)
       .then(response => {
         let user = response.data.res;
+        if (!user) return;
         console.log('User: ');
         console.log(user);
         this.updateState(user, null, null, null, 'user');
@@ -215,7 +221,7 @@ export default class App extends Component {
         this.updateState(false, null, null, null, 'authed');
       });
     console.log(`Authed?: ${this.state.authed}`);
-  }
+  };
 
   // ****************  Functions to pass down to components ***************
 
@@ -301,6 +307,7 @@ export default class App extends Component {
             authed={this.state.authed}
             user={this.state.user}
             updateState={this.updateState}
+            stateGrab={this.stateGrab}
           />
           <PrivateRouteOut
             exact

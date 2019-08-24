@@ -10,7 +10,6 @@ import {
   MDBModalFooter
 } from 'mdbreact';
 import TextArea from '../TextArea/TextArea';
-import CheckedBox from '../CheckedBox/CheckedBox';
 
 class ModalPage extends Component {
   state = {
@@ -28,14 +27,14 @@ class ModalPage extends Component {
     let modalBody;
 
     if (this.props.title === 'Skills') {
-      modalBody = <TextArea />;
+      modalBody = <MDBInput label="skill" value="" id="skill" group type="text" validate />;
     } else if (this.props.title === 'Education') {
       modalBody = (
         <form>
           <div className="grey-text">
             <MDBInput
               label="Name"
-              schoolName="Name"
+              value="Name"
               id="name"
               key="name"
               group
@@ -43,28 +42,10 @@ class ModalPage extends Component {
               validate
             />
             <MDBInput
-              label="Location"
-              schoolLocation="Address"
-              id="Address"
-              key="Address"
-              group
-              type="text"
-              validate
-            />
-            <MDBInput
               label="Degree"
-              schoolDegree="Degree"
+              value="Degree"
               id="degree"
               key="degree"
-              group
-              type="text"
-              validate
-            />
-            <MDBInput
-              label="Course"
-              schoolCourse="Course"
-              id="course"
-              key="course"
               group
               type="text"
               validate
@@ -77,7 +58,6 @@ class ModalPage extends Component {
               type="date"
               validate
             />
-
             <MDBInput
               size="2"
               label="End date"
@@ -87,11 +67,6 @@ class ModalPage extends Component {
               type="date"
               validate
             />
-            <MDBInput>
-              <CheckedBox />
-            </MDBInput>
-
-            <TextArea />
           </div>
         </form>
       );
@@ -101,7 +76,7 @@ class ModalPage extends Component {
           <div className="grey-text">
             <MDBInput
               label="title"
-              jobTitle="title"
+              value="title"
               id="title"
               key="title"
               group
@@ -135,11 +110,6 @@ class ModalPage extends Component {
               type="date"
               validate
             />
-            <MDBInput>
-              <CheckedBox />
-            </MDBInput>
-
-            <TextArea />
           </div>
         </form>
       );
