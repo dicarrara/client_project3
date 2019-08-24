@@ -15,16 +15,15 @@ export default class History extends React.Component {
     return (
       <div className="history">
         <h2 className="heading">EDUCATION</h2>
+
         {this.props.userSchool.map((education, index) => (
           <Education
             key={index}
             index={index}
             schoolName={education.schoolName}
             schoolDegree={education.schoolDegree}
-            schoolDate={`${education.schoolYearFrom} - ${
-              education.schoolYearTo
-            }`}
-            updateStateArr={this.props.updateStateArr}
+            schoolDate={`${education.schoolYearFrom} - ${education.schoolYearTo}`}
+            updateState={this.props.updateState}
           />
         ))}
 
@@ -36,7 +35,7 @@ export default class History extends React.Component {
             projectName={project.projectName}
             projectURL={project.projectURL}
             projectDesc={project.projectDesc}
-            updateStateArr={this.props.updateStateArr}
+            updateState={this.props.updateState}
           />
         ))}
       </div>

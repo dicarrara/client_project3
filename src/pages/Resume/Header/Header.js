@@ -18,16 +18,13 @@ class Header extends React.Component {
         <Address
           street={this.props.street}
           city={this.props.city}
-          updateStateObj={this.props.updateStateObj}
+          updateState={this.props.updateState}
         />
-        <ResumeTitle
-          fullName={this.props.fullName}
-          updateStateObj={this.props.updateStateObj}
-        />
+        <ResumeTitle fullName={this.props.fullName} updateState={this.props.updateState} />
         <Contact
           email={this.props.email}
           phone={this.props.phone}
-          updateStateObj={this.props.updateStateObj}
+          updateState={this.props.updateState}
         />
       </header>
     );

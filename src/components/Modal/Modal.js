@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   MDBContainer,
   MDBBtn,
@@ -8,9 +8,9 @@ import {
   MDBModalBody,
   MDBModalHeader,
   MDBModalFooter
-} from "mdbreact";
-import TextArea from "../TextArea/TextArea";
-import CheckedBox from "../CheckedBox/CheckedBox";
+} from 'mdbreact';
+import TextArea from '../TextArea/TextArea';
+import CheckedBox from '../CheckedBox/CheckedBox';
 
 class ModalPage extends Component {
   state = {
@@ -18,7 +18,7 @@ class ModalPage extends Component {
   };
 
   toggle = nr => () => {
-    let modalNumber = "modal" + nr;
+    let modalNumber = 'modal' + nr;
     this.setState({
       [modalNumber]: !this.state[modalNumber]
     });
@@ -27,9 +27,9 @@ class ModalPage extends Component {
   render() {
     let modalBody;
 
-    if (this.props.title === "Skills") {
+    if (this.props.title === 'Skills') {
       modalBody = <TextArea />;
-    } else if (this.props.title === "Education") {
+    } else if (this.props.title === 'Education') {
       modalBody = (
         <form>
           <div className="grey-text">
@@ -95,7 +95,7 @@ class ModalPage extends Component {
           </div>
         </form>
       );
-    } else if (this.props.title === "Experience") {
+    } else if (this.props.title === 'Experience') {
       modalBody = (
         <form>
           <div className="grey-text">
@@ -116,14 +116,7 @@ class ModalPage extends Component {
               type="text"
               validate
             />
-            <MDBInput
-              label="Summary"
-              id="summary"
-              key="summary"
-              group
-              type="text"
-              validate
-            />
+            <MDBInput label="Summary" id="summary" key="summary" group type="text" validate />
             <MDBInput
               label="Start Date"
               id="StartDate"
@@ -154,13 +147,11 @@ class ModalPage extends Component {
 
     return (
       <MDBContainer>
-        <MDBBtn color="primary" onClick={this.toggle(14)}>
+        <MDBBtn color="cyan" onClick={this.toggle(14)}>
           Add
         </MDBBtn>
         <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
-          <MDBModalHeader toggle={this.toggle(14)}>
-            {this.props.title}
-          </MDBModalHeader>
+          <MDBModalHeader toggle={this.toggle(14)}>{this.props.title}</MDBModalHeader>
           <MDBModalBody>{modalBody}</MDBModalBody>
           <MDBModalFooter>
             <MDBBtn color="secondary" onClick={this.toggle(14)}>

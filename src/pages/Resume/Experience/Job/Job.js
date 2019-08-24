@@ -11,11 +11,12 @@ export default class Job extends React.Component {
   }
 
   handleChange = event => {
-    this.props.updateStateArr(
+    this.props.updateState(
       'userWork',
       event.target.textContent,
       event.target.getAttribute('index'),
-      event.target.getAttribute('value')
+      event.target.getAttribute('value'),
+      null
     );
   };
 

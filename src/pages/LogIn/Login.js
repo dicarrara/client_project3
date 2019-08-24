@@ -8,7 +8,9 @@ import {
   MDBInput,
   MDBCard,
   MDBCardBody,
-  MDBCardTitle
+  MDBCardTitle,
+  MDBCardHeader,
+  MDBIcon
 } from 'mdbreact';
 import axios from 'axios';
 axios.defaults.withCredentials = true;
@@ -19,8 +21,7 @@ export default class Login extends Component {
 
     this.state = {
       email: '',
-      password: '',
-      redirect: false
+      password: ''
     };
   }
 
@@ -51,20 +52,68 @@ export default class Login extends Component {
         password: this.state.password
       })
       .then(response => {
-        console.log(response);
-        this.props.authenticate();
-        this.setState({
-          email: '',
-          password: '',
-          redirect: true
-        });
+        let user = response.data.user;
+        // Updates user state
+        this.props.updateState(user, null, null, null, 'user');
+
+        if (typeof user.userWork === 'undefined' || user.userWork.length === 0) {
+          this.updateState(
+            'userWork',
+            [
+              {
+                jobTitle: 'Full Stack Developer',
+                jobCompany: 'Google',
+                jobDate: '2017 - 2019',
+                jobSummary:
+                  'Handled full stack web development for Google. Surprisingly, they are a simple startup company that utilizes the MERN stack. Leaving for better opportunities!'
+              }
+            ],
+            null,
+            null,
+            null
+          );
+        }
+        if (typeof user.userProjects === 'undefined' || user.userProjects.length === 0) {
+          this.props.updateState(
+            'userProjects',
+            [
+              {
+                projectName: 'elgooG',
+                projectURL: 'moc.elgooG.www',
+                projectDesc:
+                  'A destination for everything! The internet is at your fingertips with my AMAZING project'
+              }
+            ],
+            null,
+            null,
+            null
+          );
+        }
+        if (typeof user.userProjects === 'undefined' || user.userProjects.length === 0) {
+          this.props.updateState(
+            'userSchool',
+            [
+              {
+                schoolName: 'MIT',
+                schoolDegree: 'B.S.',
+                schoolYearFrom: 2011,
+                schoolYearTo: 2015
+              }
+            ],
+            null,
+            null,
+            null
+          );
+        }
+        console.log(this.props.user);
+        // Authorizes page
+        this.props.props.updateState(true, null, null, null, 'authed');
       })
       .catch(error => {
         console.log(error);
         this.setState({
           email: '',
-          password: '',
-          redirect: false
+          password: ''
         });
       });
   };
@@ -76,7 +125,12 @@ export default class Login extends Component {
           <MDBCol className="d-flex justify-content-center" md="6">
             <MDBCard style={{ width: '35vw', marginBotton: 'auto' }}>
               <MDBCardBody>
-                <MDBCardTitle>Log In</MDBCardTitle>
+                <MDBCardHeader className="form-header cyan rounded">
+                  <h3 className="my-3">
+                    <MDBIcon icon="lock" /> Login:
+                  </h3>
+                </MDBCardHeader>
+
                 <form onSubmit={this.handleSubmit}>
                   <div className="grey-text">
                     <MDBInput
@@ -121,7 +175,6 @@ export default class Login extends Component {
             </MDBCard>
           </MDBCol>
         </MDBRow>
-        {this.state.redirect ? <Redirect to="/" /> : <></>}
       </MDBContainer>
     );
   }

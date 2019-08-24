@@ -8,7 +8,9 @@ import {
   MDBInput,
   MDBCard,
   MDBCardBody,
-  MDBCardTitle
+  MDBCardTitle,
+  MDBCardHeader,
+  MDBIcon
 } from 'mdbreact';
 import axios from 'axios';
 import './SignUp.css';
@@ -21,8 +23,7 @@ export default class SignUp extends Component {
       fullName: '',
       email: '',
       password: '',
-      confirmPassword: '',
-      redirect: false
+      confirmPassword: ''
     };
   }
 
@@ -70,9 +71,72 @@ export default class SignUp extends Component {
 
     let credentials = await this.addAccount(serverURL);
     let loginConfirmation = await this.loginAccount(serverURL, credentials);
+    loginConfirmation = loginConfirmation.data.user;
 
-    console.log(loginConfirmation);
-    this.props.auth(true);
+    // Updates user state
+    this.props.updateState(loginConfirmation, null, null, null, 'user');
+
+    if (
+      typeof loginConfirmation.userWork === 'undefined' ||
+      loginConfirmation.userWork.length === 0
+    ) {
+      this.props.updateState(
+        'userWork',
+        [
+          {
+            jobTitle: 'Full Stack Developer',
+            jobCompany: 'Google',
+            jobDate: '2017 - 2019',
+            jobSummary:
+              'Handled full stack web development for Google. Surprisingly, they are a simple startup company that utilizes the MERN stack. Leaving for better opportunities!'
+          }
+        ],
+        null,
+        null,
+        null
+      );
+    }
+    if (
+      typeof loginConfirmation.userProjects === 'undefined' ||
+      loginConfirmation.userProjects.length === 0
+    ) {
+      this.props.updateState(
+        'userProjects',
+        [
+          {
+            projectName: 'elgooG',
+            projectURL: 'moc.elgooG.www',
+            projectDesc:
+              'A destination for everything! The internet is at your fingertips with my AMAZING project'
+          }
+        ],
+        null,
+        null,
+        null
+      );
+    }
+    if (
+      typeof loginConfirmation.userSchool === 'undefined' ||
+      loginConfirmation.userSchool.length === 0
+    ) {
+      this.props.updateState(
+        'userSchool',
+        [
+          {
+            schoolName: 'MIT',
+            schoolDegree: 'B.S.',
+            schoolYearFrom: 2011,
+            schoolYearTo: 2015
+          }
+        ],
+        null,
+        null,
+        null
+      );
+    }
+    console.log(this.props.user);
+    // Authorizes page
+    this.props.updateState(true, null, null, null, 'authed');
   };
 
   render() {
@@ -85,7 +149,11 @@ export default class SignUp extends Component {
           <MDBCol md="6">
             <MDBCard style={{ width: '35vw', marginBotton: 'auto' }}>
               <MDBCardBody>
-                <MDBCardTitle>Sign Up</MDBCardTitle>
+                <MDBCardHeader className="form-header cyan rounded">
+                  <h3 className="my-3">
+                    <MDBIcon icon="lock" /> Signup:
+                  </h3>
+                </MDBCardHeader>
                 <form onSubmit={this.handleSubmit}>
                   {/* <p className="h3  md-6">Sign up</p> */}
                   <div className="grey-text">
@@ -154,7 +222,6 @@ export default class SignUp extends Component {
             </MDBCard>
           </MDBCol>
         </MDBRow>
-        {this.state.redirect ? <Redirect to="/" /> : <></>}
       </MDBContainer>
     );
   }

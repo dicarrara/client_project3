@@ -25,7 +25,7 @@ export default class Experience extends React.Component {
             jobTitle={job.jobTitle}
             jobDate={job.jobDate}
             jobSummary={job.jobSummary}
-            updateStateArr={this.props.updateStateArr}
+            updateState={this.props.updateState}
           />
         ))}
       </div>

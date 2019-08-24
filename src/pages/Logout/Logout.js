@@ -17,7 +17,7 @@ export default class Logout extends Component {
     }
     axios.get(`${serverURL}/logout`);
     setTimeout(() => {
-      this.props.auth(false);
+      this.props.updateState(false, null, null, null, 'authed');
     }, 1000 * 3);
   }
 
@@ -32,9 +32,7 @@ export default class Logout extends Component {
               <br />
               <br />
               <br />
-              <p className="text-black">
-                Please have a great day, hope to see you again!
-              </p>
+              <h5 className="text-black">Please have a great day, hope to see you again!</h5>
               <div />
               <br />
               <br />

@@ -19,53 +19,53 @@ export default class Skills extends React.Component {
         <div className="ratings" style={{ paddingBottom: '12px' }}>
           <div className="ratings__skills">
             <Skill
-              skill={this.props.skills[0]}
-              updateStateArr={this.props.updateStateArr}
-              index={0}
+              skill={this.props.skills.skill1}
+              value={'skill1'}
+              updateState={this.props.updateState}
             />
             <Skill
-              skill={this.props.skills[1]}
-              updateStateArr={this.props.updateStateArr}
-              index={1}
+              skill={this.props.skills.skill2}
+              value={'skill2'}
+              updateState={this.props.updateState}
             />
             <Skill
-              skill={this.props.skills[2]}
-              updateStateArr={this.props.updateStateArr}
-              index={2}
+              skill={this.props.skills.skill3}
+              value={'skill3'}
+              updateState={this.props.updateState}
             />
           </div>
           <div className="ratings__skills">
             <Skill
-              skill={this.props.skills[3]}
-              updateStateArr={this.props.updateStateArr}
-              index={3}
+              skill={this.props.skills.skill4}
+              value={'skill4'}
+              updateState={this.props.updateState}
             />
             <Skill
-              skill={this.props.skills[4]}
-              updateStateArr={this.props.updateStateArr}
-              index={4}
+              skill={this.props.skills.skill5}
+              value={'skill5'}
+              updateState={this.props.updateState}
             />
             <Skill
-              skill={this.props.skills[5]}
-              updateStateArr={this.props.updateStateArr}
-              index={5}
+              skill={this.props.skills.skill6}
+              value={'skill6'}
+              updateState={this.props.updateState}
             />
           </div>
           <div className="ratings__tools">
             <Skill
-              skill={this.props.skills[6]}
-              updateStateArr={this.props.updateStateArr}
-              index={6}
+              skill={this.props.skills.skill7}
+              value={'skill7'}
+              updateState={this.props.updateState}
             />
             <Skill
-              skill={this.props.skills[7]}
-              updateStateArr={this.props.updateStateArr}
-              index={7}
+              skill={this.props.skills.skill8}
+              value={'skill8'}
+              updateState={this.props.updateState}
             />
             <Skill
-              skill={this.props.skills[8]}
-              updateStateArr={this.props.updateStateArr}
-              index={8}
+              skill={this.props.skills.skill9}
+              value={'skill9'}
+              updateState={this.props.updateState}
             />
           </div>
         </div>
