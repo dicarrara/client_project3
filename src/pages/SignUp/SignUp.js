@@ -78,7 +78,7 @@ export default class SignUp extends Component {
 
     if (
       typeof loginConfirmation.userWork === 'undefined' ||
-      loginConfirmation.userWork.length === 0
+      Object.keys(loginConfirmation.userWork).length === 0
     ) {
       this.props.updateState(
         'userWork',
@@ -98,7 +98,7 @@ export default class SignUp extends Component {
     }
     if (
       typeof loginConfirmation.userProjects === 'undefined' ||
-      loginConfirmation.userProjects.length === 0
+      Object.keys(loginConfirmation.userProjects).length === 0
     ) {
       this.props.updateState(
         'userProjects',
@@ -117,7 +117,7 @@ export default class SignUp extends Component {
     }
     if (
       typeof loginConfirmation.userSchool === 'undefined' ||
-      loginConfirmation.userSchool.length === 0
+      Object.keys(loginConfirmation.userSchool).length === 0
     ) {
       this.props.updateState(
         'userSchool',

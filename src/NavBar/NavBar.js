@@ -34,12 +34,8 @@ class NavbarPageTwo extends Component {
       <MDBNavbar color="black" dark expand="md">
         <MDBNavbarBrand>
           <Link to={this.props.authed === false ? '/home' : '/'}>
-            <img
-              src="/ninja.png"
-              style={{ height: '4vw', width: '4vw' }}
-              alt="ninja"
-            />
-            <strong className="white-text">resume-ninja</strong>
+            <img src="/ninja.png" style={{ height: '4vw', width: '4vw' }} alt="ninja" />
+            <strong className="white-text">Resume Ninja</strong>
           </Link>
         </MDBNavbarBrand>
 

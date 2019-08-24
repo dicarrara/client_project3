@@ -10,129 +10,131 @@ import {
   MDBModalFooter
 } from 'mdbreact';
 import TextArea from '../TextArea/TextArea';
+import axios from 'axios';
 
-class ModalPage extends Component {
+let serverURL;
+if (window.location.hostname === 'localhost') {
+  serverURL = 'http://localhost:8080';
+} else {
+  serverURL = 'https://server-project3.herokuapp.com';
+}
+
+export default class ModalPage extends Component {
   state = {
-    modal14: false
+    vis: false,
+    schoolName: '',
+    schoolDegree: '',
+    schoolYearFrom: '',
+    schoolYearTo: '',
+    jobTitle: '',
+    jobCompany: '',
+    jobDate: '',
+    jobSummary: '',
+    projectName: '',
+    projectURL: '',
+    projectDesc: ''
   };
 
-  toggle = nr => () => {
-    let modalNumber = 'modal' + nr;
+  toggle = () => {
     this.setState({
-      [modalNumber]: !this.state[modalNumber]
+      vis: !this.state.vis
+    });
+  };
+
+  saveNew = async event => {
+    event.preventDefault();
+    let update;
+    let path;
+    if (this.props.identity == 'userSchool') {
+      update = {
+        schoolName: this.state.schoolName,
+        schoolDegree: this.state.schoolDegree,
+        schoolYearFrom: this.state.schoolYearFrom,
+        schoolYearTo: this.state.schoolYearTo
+      };
+      path = 'school';
+    } else if (this.props.identity == 'userWork') {
+      update = {
+        jobTitle: this.state.jobTitle,
+        jobCompany: this.state.jobCompany,
+        jobDate: this.state.jobDate,
+        jobSummary: this.state.jobSummary
+      };
+      path = 'job';
+    } else if (this.props.identity == 'userProjects') {
+      update = {
+        projectName: this.state.projectName,
+        projectURL: this.state.projectURL,
+        projectDesc: this.state.projectDesc
+      };
+      path = 'projects';
+    }
+
+    let res = await axios.put(`${serverURL}/api/account/${path}`, {
+      id: this.props.userID,
+      ...update
+    });
+
+    console.log(res);
+    this.setState({
+      vis: false,
+      schoolName: '',
+      schoolDegree: '',
+      schoolYearFrom: '',
+      schoolYearTo: '',
+      jobTitle: '',
+      jobCompany: '',
+      jobDate: '',
+      jobSummary: '',
+      projectName: '',
+      projectURL: '',
+      projectDesc: ''
+    });
+    this.props.stateGrab();
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
     });
   };
 
   render() {
-    let modalBody;
-
-    if (this.props.title === 'Skills') {
-      modalBody = <MDBInput label="skill" value="" id="skill" group type="text" validate />;
-    } else if (this.props.title === 'Education') {
-      modalBody = (
-        <form>
-          <div className="grey-text">
-            <MDBInput
-              label="Name"
-              value="Name"
-              id="name"
-              key="name"
-              group
-              type="text"
-              validate
-            />
-            <MDBInput
-              label="Degree"
-              value="Degree"
-              id="degree"
-              key="degree"
-              group
-              type="text"
-              validate
-            />
-            <MDBInput
-              label="Start Date"
-              id="StartDate"
-              key="StartDate"
-              group
-              type="date"
-              validate
-            />
-            <MDBInput
-              size="2"
-              label="End date"
-              id="EndDate"
-              key="EndDate"
-              group
-              type="date"
-              validate
-            />
-          </div>
-        </form>
-      );
-    } else if (this.props.title === 'Experience') {
-      modalBody = (
-        <form>
-          <div className="grey-text">
-            <MDBInput
-              label="title"
-              value="title"
-              id="title"
-              key="title"
-              group
-              type="text"
-              validate
-            />
-            <MDBInput
-              label="Company Name"
-              id="CompanyName"
-              key="CompanyName"
-              group
-              type="text"
-              validate
-            />
-            <MDBInput label="Summary" id="summary" key="summary" group type="text" validate />
-            <MDBInput
-              label="Start Date"
-              id="StartDate"
-              key="StartDate"
-              group
-              type="date"
-              validate
-            />
-
-            <MDBInput
-              size="2"
-              label="End date"
-              id="EndDate"
-              key="EndDate"
-              group
-              type="date"
-              validate
-            />
-          </div>
-        </form>
-      );
-    }
-
     return (
       <MDBContainer>
-        <MDBBtn color="cyan" onClick={this.toggle(14)}>
+        <MDBBtn color="cyan" onClick={this.toggle}>
           Add
         </MDBBtn>
-        <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
-          <MDBModalHeader toggle={this.toggle(14)}>{this.props.title}</MDBModalHeader>
-          <MDBModalBody>{modalBody}</MDBModalBody>
+        <MDBModal isOpen={this.state.vis} toggle={this.toggle} centered>
+          <MDBModalHeader toggle={this.toggle}>{this.props.title}</MDBModalHeader>
+          <MDBModalBody>
+            <form>
+              <div className="grey-text">
+                {this.props.words.map(word => (
+                  <MDBInput
+                    label={Object.values(word)[0]}
+                    id={Object.keys(word)[0]}
+                    key={Object.keys(word)[0]}
+                    group
+                    type="text"
+                    validate
+                    value={this.state[Object.keys(word)[0]]}
+                    onChange={this.handleChange}
+                  />
+                ))}
+              </div>
+            </form>
+          </MDBModalBody>
           <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={this.toggle(14)}>
+            <MDBBtn color="secondary" onClick={this.toggle}>
               Close
             </MDBBtn>
-            <MDBBtn color="primary">Save</MDBBtn>
+            <MDBBtn color="primary" onClick={this.saveNew}>
+              Save
+            </MDBBtn>
           </MDBModalFooter>
         </MDBModal>
       </MDBContainer>
     );
   }
 }
-
-export default ModalPage;

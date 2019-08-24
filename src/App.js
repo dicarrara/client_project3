@@ -164,7 +164,11 @@ export default class App extends Component {
         console.log(user);
         this.updateState(user, null, null, null, 'user');
 
-        if (typeof user.userWork === 'undefined' || user.userWork.length === 0) {
+        if (
+          typeof user.userWork === 'undefined' ||
+          user.userWork.length === 0 ||
+          Object.keys(user.userWork).length === 0
+        ) {
           this.updateState(
             'userWork',
             [
@@ -181,7 +185,11 @@ export default class App extends Component {
             null
           );
         }
-        if (typeof user.userProjects === 'undefined' || user.userProjects.length === 0) {
+        if (
+          typeof user.userProjects === 'undefined' ||
+          user.userProjects.length === 0 ||
+          Object.keys(user.userProjects).length === 0
+        ) {
           this.updateState(
             'userProjects',
             [
@@ -197,7 +205,11 @@ export default class App extends Component {
             null
           );
         }
-        if (typeof user.userSchool === 'undefined' || user.userSchool.length === 0) {
+        if (
+          typeof user.userSchool === 'undefined' ||
+          user.userSchool.length === 0 ||
+          Object.keys(user.userSchool).length === 0
+        ) {
           this.updateState(
             'userSchool',
             [

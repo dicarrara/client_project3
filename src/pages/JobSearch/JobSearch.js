@@ -107,7 +107,7 @@ export default class JobSearch extends Component {
             {this.state.jobs.map(job => {
               return (
                 <CardForJob
-                  key={job.id}
+                  id={job.id}
                   title={job.title}
                   description={job.description}
                   company={job.company}
