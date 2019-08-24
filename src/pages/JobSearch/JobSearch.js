@@ -32,9 +32,15 @@ export default class JobSearch extends Component {
     } else {
       serverURL = 'https://server-project3.herokuapp.com';
     }
-
+    let skillSearch = '';
+    for (var key in this.props.user.skills) {
+      if (key.startsWith('skill')) {
+        skillSearch = skillSearch + this.props.user.skills[key] + '~';
+      }
+    }
+    skillSearch = encodeURI(skillSearch);
     axios
-      .get(`${serverURL}/api/${this.state.jobSearch}/${this.state.jobLocation}/true`)
+      .get(`${serverURL}/api/${this.state.jobSearch}/${this.state.jobLocation}/${skillSearch}`)
       .then(response => {
         console.log(response.data.res);
         this.setState({ jobs: response.data.res });
@@ -42,10 +48,6 @@ export default class JobSearch extends Component {
       .catch(error => {
         console.log(error);
       });
-    this.setState({
-      email: '',
-      password: ''
-    });
   };
 
   render() {
@@ -110,6 +112,7 @@ export default class JobSearch extends Component {
                   description={job.description}
                   company={job.company}
                   url={job.url}
+                  matching={job.descriptionArr}
                 />
               );
             })}

@@ -57,7 +57,7 @@ export default class Login extends Component {
         this.props.updateState(user, null, null, null, 'user');
 
         if (typeof user.userWork === 'undefined' || user.userWork.length === 0) {
-          this.updateState(
+          this.props.updateState(
             'userWork',
             [
               {
@@ -107,7 +107,7 @@ export default class Login extends Component {
         }
         console.log(this.props.user);
         // Authorizes page
-        this.props.props.updateState(true, null, null, null, 'authed');
+        this.props.updateState(true, null, null, null, 'authed');
       })
       .catch(error => {
         console.log(error);

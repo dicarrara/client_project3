@@ -1,17 +1,13 @@
-import React from "react";
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardTitle,
-} from "mdbreact";
+import React from 'react';
+import { MDBCard, MDBCardBody, MDBCardTitle } from 'mdbreact';
 
-import ModalPage from "../Modal/Modal";
+import Modal from '../Modal/Modal';
 
 const EducationCard = props => (
-  <MDBCard style={{ width: "22rem" }}>
+  <MDBCard style={{ width: '22rem' }}>
     <MDBCardBody>
       <MDBCardTitle>Education</MDBCardTitle>
-      <ModalPage title="Education" />
+      <Modal title="Education" />
     </MDBCardBody>
   </MDBCard>
 );

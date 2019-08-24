@@ -32,7 +32,7 @@ export default class Account extends Component {
     super(props);
 
     this.state = {
-      id: this.props.user.id,
+      id: this.props.user._id,
       fullName: this.props.user.fullName,
       email: this.props.user.email,
       phone: this.props.user.phone,
@@ -63,6 +63,7 @@ export default class Account extends Component {
 
     let res = await this.api.accountSubmit(serverURL);
     console.log(res);
+    this.props.stateGrab();
   };
 
   handleChange = event => {
@@ -166,7 +167,7 @@ export default class Account extends Component {
           <MDBRow style={{ paddingTop: '2%' }}>
             <MDBCol size="12">
               <div className="text-center mt-4">
-                <MDBBtn color="cyan" outline type="submit">
+                <MDBBtn color="cyan" outline type="submit" onClick={this.submitAccountDetails}>
                   Update!
                 </MDBBtn>
               </div>
