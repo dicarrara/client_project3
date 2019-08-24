@@ -18,7 +18,8 @@ export default class Skills extends React.Component {
         </div>
         <div className="ratings" style={{ paddingBottom: '12px' }}>
           <div className="ratings__skills">
-            <Skill
+          
+            <Skill            
               skill={this.props.skills.skill1}
               value={'skill1'}
               updateState={this.props.updateState}

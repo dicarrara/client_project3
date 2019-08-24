@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   MDBContainer,
   MDBRow,
@@ -11,20 +11,20 @@ import {
   MDBTable,
   MDBTableHead,
   MDBTableBody
-} from 'mdbreact';
-import ExperienceCard from '../../components/ExperienceCard/ExperienceCard';
-import SkillsCard from '../../components/SkillsCard/SkillsCard';
-import EducationCard from '../../components/EducationCard/EducationCard';
-import './Account.css';
+} from "mdbreact";
+import ExperienceCard from "../../components/ExperienceCard/ExperienceCard";
+import SkillsCard from "../../components/SkillsCard/SkillsCard";
+import EducationCard from "../../components/EducationCard/EducationCard";
+import "./Account.css";
 
-import axios from 'axios';
+import axios from "axios";
 axios.defaults.withCredentials = true;
 
 let serverURL;
-if (window.location.hostname === 'localhost') {
-  serverURL = 'http://localhost:8080';
+if (window.location.hostname === "localhost") {
+  serverURL = "http://localhost:8080";
 } else {
-  serverURL = 'https://server-project3.herokuapp.com';
+  serverURL = "https://server-project3.herokuapp.com";
 }
 
 export default class Account extends Component {
@@ -39,7 +39,10 @@ export default class Account extends Component {
       portfolioURL: this.props.user.portfolioURL,
       addressStreet: this.props.user.addressStreet,
       addressCity: this.props.user.addressCity,
-      summary: this.props.user.summary
+      summary: this.props.user.summary,
+      education: this.props.user.education,
+      experience: this.props.user.experience,
+      skills: this.props.user.skills
     };
   }
 
@@ -53,7 +56,10 @@ export default class Account extends Component {
         portfolioURL: this.state.portfolioURL,
         addressStreet: this.state.addressStreet,
         addressCity: this.state.addressCity,
-        summary: this.state.summary
+        summary: this.state.summary,
+        education: this.props.education,
+        experience: this.props.experience,
+        skills: this.props.skills
       });
     }
   };
@@ -76,15 +82,15 @@ export default class Account extends Component {
     return (
       <>
         <MDBContainer>
-          <MDBRow style={{ paddingTop: '8%' }}>
+          <MDBRow style={{ paddingTop: "8%" }}>
             <MDBCol size="12">
               <h1>Account Info: </h1>
             </MDBCol>
           </MDBRow>
           <form>
-            <MDBRow style={{ paddingTop: '2%' }}>
+            <MDBRow style={{ paddingTop: "2%" }}>
               <MDBCol size="6">
-                <MDBRow style={{ paddingTop: '2%' }}>
+                <MDBRow style={{ paddingTop: "2%" }}>
                   <MDBCol size="6">
                     <MDBInput
                       type="text"
@@ -106,7 +112,7 @@ export default class Account extends Component {
                     />
                   </MDBCol>
                 </MDBRow>
-                <MDBRow style={{ paddingTop: '2%' }}>
+                <MDBRow style={{ paddingTop: "2%" }}>
                   <MDBCol size="6">
                     <MDBInput
                       type="text"
@@ -128,7 +134,7 @@ export default class Account extends Component {
                     />
                   </MDBCol>
                 </MDBRow>
-                <MDBRow style={{ paddingTop: '2%' }}>
+                <MDBRow style={{ paddingTop: "2%" }}>
                   <MDBCol size="6">
                     <MDBInput
                       type="text"
@@ -150,6 +156,30 @@ export default class Account extends Component {
                     />
                   </MDBCol>
                 </MDBRow>
+                <MDBRow style={{ paddingTop: "2%" }}>
+                  <MDBCol size="12">
+                    <MDBInput
+                      type="text"
+                      id="education"
+                      className="form-control"
+                      label="Education"
+                      value={this.state.education}
+                      onChange={this.handleChange}
+                    />
+                  </MDBCol>
+                </MDBRow>
+                <MDBRow style={{ paddingTop: "2%" }}>
+                  <MDBCol size="12">
+                    <MDBInput
+                      type="text"
+                      id="experience"
+                      className="form-control"
+                      label="Experience"
+                      value={this.state.experience}
+                      onChange={this.handleChange}
+                    />
+                  </MDBCol>
+                </MDBRow>
               </MDBCol>
               <MDBCol size="6">
                 <MDBInput
@@ -161,13 +191,29 @@ export default class Account extends Component {
                   value={this.state.summary}
                   onChange={this.handleChange}
                 />
+                <MDBInput
+                  type="textarea"
+                  id="skills"
+                  className="form-control"
+                  rows="4"
+                  label="Skills"
+                  value={this.state.skills}
+                  onChange={this.handleChange}
+                />
+
               </MDBCol>
+           
             </MDBRow>
           </form>
-          <MDBRow style={{ paddingTop: '2%' }}>
+          <MDBRow style={{ paddingTop: "2%" }}>
             <MDBCol size="12">
               <div className="text-center mt-4">
-                <MDBBtn color="cyan" outline type="submit" onClick={this.submitAccountDetails}>
+                <MDBBtn
+                  color="cyan"
+                  outline
+                  type="submit"
+                  onClick={this.submitAccountDetails}
+                >
                   Update!
                 </MDBBtn>
               </div>
