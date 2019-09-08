@@ -25,9 +25,7 @@ Provides easy to use online learning experience.
 
 ## Team
 
-Diana Carrara – front end [http://www.diana-carrara.com/](http://www.diana-carrara.com/) – dianaVcarrara@gmail.com
-
-[https://github.com/dicarrara](https://github.com/dicarrara)
+Diana Carrara – front end [http://www.diana-carrara.com/](http://www.diana-carrara.com/) – dianaVcarrara@gmail.com || [https://github.com/dicarrara](https://github.com/dicarrara)
 
 Rich Walker – back end [http://richwalker124.github.io/](http://richwalker124.github.io/) – Rjw12498@gmail.com
 
