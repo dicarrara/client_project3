@@ -23,8 +23,14 @@ Provides easy to use online learning experience.
 - AWS
 - Heroku
 
-## Meta
+## Team
 
-Diana Carrara – [Web site](http://www.diana-carrara.com/) – dianaVcarrara@gmail.com
+Diana Carrara – front end [http://www.diana-carrara.com/](http://www.diana-carrara.com/) – dianaVcarrara@gmail.com
+[https://github.com/dicarrara](https://github.com/dicarrara)
 
-[https://github.com/dianacarrara/github-link](https://github.com/dicarrara)
+Rich Walker – back end [http://richwalker124.github.io/](http://richwalker124.github.io/) – Rjw12498@gmail.com
+
+Samuel Krohn - back end [https://github.com/Xoelos](https://github.com/Xoelos)
+
+
+
