@@ -1,11 +1,10 @@
 # Resume Ninja
 Online resume builder and job searcher
 
+Front end deployed to AWS.
 [Resume-ninja](http://project3du.s3-website.us-east-2.amazonaws.com/learn)
 
-Front end deployed to AWS.
-
-Back end deployed to Heroku - [Back-end](https://github.com/Xoelos/server_project3)
+[Back end deployed to Heroku](https://github.com/Xoelos/server_project3)
 
 
 ## Usage
