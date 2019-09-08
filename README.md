@@ -1,5 +1,5 @@
 # Resume Ninja
-> Oline resume builder and job searcher
+Online resume builder and job searcher
 [Check out the App](http://project3du.s3-website.us-east-2.amazonaws.com/learn)
 
 ## Usage
