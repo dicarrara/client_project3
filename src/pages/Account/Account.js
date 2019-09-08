@@ -4,12 +4,8 @@ import {
   MDBContainer,
   MDBRow,
   MDBCol,
-  MDBCard,
   MDBBtn,
-  MDBIcon,
   MDBInput,
-  MDBListGroupItem,
-  MDBListGroup
 } from 'mdbreact';
 import AccountCard from '../../components/AccountCard/AccountCard';
 import AccountList from './AccountList/AccountList';
