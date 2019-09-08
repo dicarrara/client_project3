@@ -3,7 +3,8 @@ Online resume builder and job searcher
 
 [Resume-ninja](http://project3du.s3-website.us-east-2.amazonaws.com/learn)
 
-Front end deployed to AWS
+Front end deployed to AWS.
+
 Back end deployed to Heroku - [Back-end](https://github.com/Xoelos/server_project3)
 
 
