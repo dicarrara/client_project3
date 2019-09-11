@@ -2,14 +2,13 @@
 Online resume builder and job search application
 
 Front end deployed to AWS: 
-
 [Resume Ninja](http://project3du.s3-website.us-east-2.amazonaws.com)
 
 Feel free to use our viewer account!
 
 Email: "hi@me.com"
 
-Password: "00"
+Password: "00" (Zero Zero)
 
 Server deployed on Heroku: 
 [Backend](https://github.com/Xoelos/server_project3)
