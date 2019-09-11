@@ -6,7 +6,7 @@ Front end deployed to AWS:
 
 Feel free to use our viewer account!
 
-Email: "hi@me.com"
+Email: "hi@&#8203;me.com"
 
 Password: "00" (Zero Zero)
 
