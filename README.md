@@ -34,7 +34,7 @@ Diana Carrara – front end [http://www.diana-carrara.com/](http://www.diana-car
 
 Rich Walker – back end [http://richwalker124.github.io/](http://richwalker124.github.io/) – Rjw12498@gmail.com
 
-Samuel Krohn - back end [https://github.com/Xoelos](https://github.com/Xoelos)
+Samuel Krohn - backend, authentication [https://github.com/Xoelos](https://github.com/Xoelos)
 
 
 
