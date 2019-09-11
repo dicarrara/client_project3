@@ -1,10 +1,16 @@
 # Resume Ninja
-Online resume builder and job searcher
+Online resume builder and job search application
 
-Front end deployed to AWS.
-[Resume-ninja](http://project3du.s3-website.us-east-2.amazonaws.com/learn)
+Front end deployed to AWS: 
 
-[Back end deployed to Heroku](https://github.com/Xoelos/server_project3)
+[Resume Ninja](http://project3du.s3-website.us-east-2.amazonaws.com)
+
+Feel free to use our viewer account:
+Email - hi@me.com
+Password - 00
+
+Server deployed on Heroku: 
+[Backend](https://github.com/Xoelos/server_project3)
 
 
 ## Usage
@@ -12,7 +18,7 @@ Front end deployed to AWS.
 Using our resume builder will save you valuable time and money
 when searching for a job.
 
-Resume-ninja finds jobs that are relevant to your skill set.
+Resume Ninja finds jobs that are relevant to your skill set.
 
 Provides easy to use online learning experience.
 
@@ -20,12 +26,12 @@ Provides easy to use online learning experience.
 - Node.js
 - Express.js
 - React.js
-- MDB
+- MDB React
 - Passport.js
 - GitHub API
 - MongoDB
 - Mongoose
-- AWS
+- AWS S3
 - Heroku
 
 ## Team
