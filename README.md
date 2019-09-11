@@ -5,9 +5,11 @@ Front end deployed to AWS:
 
 [Resume Ninja](http://project3du.s3-website.us-east-2.amazonaws.com)
 
-Feel free to use our viewer account:
-Email - hi@me.com
-Password - 00
+Feel free to use our viewer account!
+
+Email: "hi@me.com"
+
+Password: "00"
 
 Server deployed on Heroku: 
 [Backend](https://github.com/Xoelos/server_project3)
