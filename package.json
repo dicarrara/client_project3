@@ -5,7 +5,7 @@
   "homepage": "https://dicarrara.github.io/client_project3/",
   "proxy": "http://localhost:3000",
   "dependencies": {
-    "3d-react-carousal": "^2.0.1",
+    "3d-react-carousal": "^5.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.21",
     "@fortawesome/free-brands-svg-icons": "^5.10.1",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
@@ -24,7 +24,7 @@
     "react-modal": "^3.9.1",
     "react-pop": "^1.0.3",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "react-tap-event-plugin": "^3.0.3",
     "semantic-ui-react": "^0.87.3"
   },
